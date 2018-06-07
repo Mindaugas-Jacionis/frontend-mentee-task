@@ -35,12 +35,23 @@ const saveServers = (state, action) =>{
     }
 }
 
+const logout = (state, action) =>{
+    localStorage.removeItem("token");
+
+    return {
+        token: "",
+        servers: ""
+    }
+}
+
 const reducer = (state = initialState, action)=>{
     switch(action.type){
         case actionTypes.AUTH_SUCCESS:
         return authSuccess(state, action);
         case actionTypes.SAVE_SERVERS:
         return saveServers(state, action);
+        case actionTypes.AUTH_LOGOUT:
+        return logout();
         default:
         return state;
     }

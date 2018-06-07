@@ -10,7 +10,6 @@ export const saveServers = serversArray =>{
 }
 
 export const getServers = token => {
-    console.log(token);
   return dispatch => {
     axios
       .get("http://playground.tesonet.lt/v1/servers", {
@@ -30,13 +29,10 @@ export const auth = (username, password) => {
       username,
       password
     };
-    console.log(loginData);
     axios
       .post("http://playground.tesonet.lt/v1/tokens", loginData)
       .then(response => {
-
         dispatch(authSuccess(response.data.token));
-        dispatch(getServers(response.data.token));
       })
       .catch(error => {
         console.log(error);
@@ -63,3 +59,9 @@ export const authSuccess = token => {
     token:token
   };
 };
+
+export const authLogout = () =>{
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}

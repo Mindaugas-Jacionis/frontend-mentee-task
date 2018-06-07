@@ -8,21 +8,13 @@ class Login extends Component {
     password: ""
   };
 
-  componentDidMount() {
-
-    // move to App js ? ->>
-    const token = localStorage.getItem("token");
-    if (token) {
-      this.props.getServers(token);
+ 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.token) {
+      this.props.history.push("/servers");
     }
   }
-
-  //find better place to redirect ? -->
-  componentWillReceiveProps(nextProps){
-      if (nextProps.servers) {
-        this.props.history.push("/servers");
-      }
-  }
+ 
 
   formSubmitHandler = event => {
     event.preventDefault();
@@ -64,18 +56,18 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (username, password) => dispatch(actions.auth(username, password)),
-    getServers: token => dispatch(actions.getServers(token))
+    onLogin: (username, password) => dispatch(actions.auth(username, password))
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    servers: state.servers
-  };
-};
+const mapStateToProps = state =>{
+    return{
+        token: state.token
+    }
+}
+
 
 export default connect(
-  mapStateToProps,
+    mapStateToProps,
   mapDispatchToProps
 )(Login);

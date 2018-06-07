@@ -8,6 +8,22 @@ class Login extends Component {
     password: ""
   };
 
+  componentDidMount() {
+
+    // move to App js ? ->>
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.props.getServers(token);
+    }
+  }
+
+  //find better place to redirect ? -->
+  componentWillReceiveProps(nextProps){
+      if (nextProps.servers) {
+        this.props.history.push("/servers");
+      }
+  }
+
   formSubmitHandler = event => {
     event.preventDefault();
     this.props.onLogin(this.state.username, this.state.password);
@@ -22,29 +38,44 @@ class Login extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <form onSubmit={this.formSubmitHandler}>
-          <input 
-          onChange={this.usernameChangeHandler}
-          placeholder="Username" type="text" required />
-          <input 
-          onChange={this.passwordChangeHandler}
-          placeholder="Password" type="password" required />
-          <button>Log in</button>
-        </form>
-      </div>
-    );
+    
+      return (
+        <div>
+          <form onSubmit={this.formSubmitHandler}>
+            <input
+              onChange={this.usernameChangeHandler}
+              placeholder="Username"
+              type="text"
+              required
+            />
+            <input
+              onChange={this.passwordChangeHandler}
+              placeholder="Password"
+              type="password"
+              required
+            />
+            <button>Log in</button>
+          </form>
+        </div>
+      );
+    
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (username, password) => dispatch(actions.auth(username, password))
+    onLogin: (username, password) => dispatch(actions.auth(username, password)),
+    getServers: token => dispatch(actions.getServers(token))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    servers: state.servers
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

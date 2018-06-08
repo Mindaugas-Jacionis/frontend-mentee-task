@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import Servers from "./containers/Servers/Servers";
 import { connect } from "react-redux";
@@ -16,15 +16,26 @@ class App extends Component {
     }
   }
 
-  //guard routes depending on login state
   render() {
-    return (
-      <div className="App">
+    //guard routes depending on login state
+
+    let routes = (
+      <Switch>
         <Route path="/" exact component={Login} />
-        <Route path="/servers" exact component={Servers} />
         <Redirect to="/" />
-      </div>
+      </Switch>
     );
+
+    if (localStorage.getItem("token")) {
+      routes = (
+        <Switch>
+          <Route path="/servers" exact component={Servers} />
+          <Redirect to="/servers" />
+        </Switch>
+      );
+    }
+
+    return <div className="App">{routes}</div>;
   }
 }
 
@@ -34,7 +45,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Server from "../../components/Server/Server";
 import * as actions from "../../store/actions";
 import Header from "../../components/Header/Header";
-
+import "./Servers.css";
 
 class Servers extends Component {
   componentDidMount() {
@@ -14,8 +14,8 @@ class Servers extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.token === ""){
-        this.props.history.push("/");
+    if (nextProps.token === "") {
+      this.props.history.push("/");
     }
   }
 
@@ -34,9 +34,13 @@ class Servers extends Component {
     }
 
     return (
-      <div>
+      <div className="servers-container">
         <Header logout={this.props.logout} />
-        {servers}
+        <div className="servers-list-header">
+          <p>SERVERS</p>
+          <p>DISTANCE</p>
+        </div>
+        <div className="servers-list">{servers}</div>
       </div>
     );
   }
@@ -45,7 +49,7 @@ class Servers extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     getServers: token => dispatch(actions.getServers(token)),
-    logout: ()=>dispatch(actions.authLogout())
+    logout: () => dispatch(actions.authLogout())
   };
 };
 

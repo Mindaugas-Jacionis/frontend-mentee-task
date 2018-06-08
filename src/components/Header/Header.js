@@ -7,7 +7,7 @@ const header = props => {
   return (
     <header className="header">
       <div className="header-logo-container">
-      <img src={logo}/>
+      <img src={logo} alt="logo"/>
       </div>
       <div>
         

@@ -35,7 +35,7 @@ class Login extends Component {
       <div className="login-container">
         <div className="login-form-container">
           <div className="login-logo-container">
-            <img src={logo} />
+            <img src={logo} alt="logo"/>
           </div>
 
           <form className="login-form" onSubmit={this.formSubmitHandler}>

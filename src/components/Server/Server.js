@@ -1,16 +1,17 @@
 import React from "react";
+import "./Server.css";
 
 const server = (props) =>{
 
 
 
     return (
-        <div>
+        <div className="server-container">
             <div>
                 {props.name}
             </div>
             <div>
-                {props.distance}
+                {props.distance} km
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
-import logo from "../../assets/testio.png";
+import logo from "../../assets/testio-logo-light.png";
 
 import "./Login.css";
 
@@ -33,8 +33,8 @@ class Login extends Component {
   render() {
     return (
       <div className="login-container">
-        <div className="form-container">
-          <div className="logo-container">
+        <div className="login-form-container">
+          <div className="login-logo-container">
             <img src={logo} />
           </div>
 

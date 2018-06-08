@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
+import logo from "../../assets/testio.png";
+
+import "./Login.css";
 
 class Login extends Component {
   state = {
@@ -8,13 +11,11 @@ class Login extends Component {
     password: ""
   };
 
- 
   componentWillReceiveProps(nextProps) {
     if (nextProps.token) {
       this.props.history.push("/servers");
     }
   }
- 
 
   formSubmitHandler = event => {
     event.preventDefault();
@@ -30,10 +31,14 @@ class Login extends Component {
   };
 
   render() {
-    
-      return (
-        <div>
-          <form onSubmit={this.formSubmitHandler}>
+    return (
+      <div className="login-container">
+        <div className="form-container">
+          <div className="logo-container">
+            <img src={logo} />
+          </div>
+
+          <form className="login-form" onSubmit={this.formSubmitHandler}>
             <input
               onChange={this.usernameChangeHandler}
               placeholder="Username"
@@ -49,8 +54,8 @@ class Login extends Component {
             <button>Log in</button>
           </form>
         </div>
-      );
-    
+      </div>
+    );
   }
 }
 
@@ -60,14 +65,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state =>{
-    return{
-        token: state.token
-    }
-}
-
+const mapStateToProps = state => {
+  return {
+    token: state.token
+  };
+};
 
 export default connect(
-    mapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);

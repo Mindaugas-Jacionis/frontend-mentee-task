@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import logo from "../../assets/testio-logo-light.png";
-
+import Spinner from "../../components/Spinner/Spinner";
 import "./Login.css";
 
 export class Login extends Component {
@@ -31,6 +31,7 @@ export class Login extends Component {
   };
 
   render() {
+
     return (
       <div className="login-container">
         <div className="login-form-container">
@@ -51,7 +52,7 @@ export class Login extends Component {
               type="password"
               required
             />
-            <button>Log in</button>
+            <button>{this.props.loading? <Spinner/>: "Log in"}</button>
           </form>
         </div>
       </div>
@@ -67,7 +68,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    token: state.token
+    token: state.token,
+    loading: state.loading
   };
 };
 

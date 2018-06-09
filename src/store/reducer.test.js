@@ -5,7 +5,8 @@ describe("reducer", () => {
   it("should return initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       token: "",
-      servers: ""
+      servers: "",
+      loading: false
     });
   });
 
@@ -22,7 +23,8 @@ describe("reducer", () => {
       )
     ).toEqual({
       token: "",
-      servers: ""
+      servers: "",
+      loading: false
     });
   });
 
@@ -34,7 +36,8 @@ describe("reducer", () => {
       })
     ).toEqual({
       token: "token",
-      servers: ""
+      servers: "",
+      loading: false
     });
   });
 
@@ -43,7 +46,8 @@ describe("reducer", () => {
       reducer(
         {
           token: "",
-          servers: ""
+          servers: "",
+          loading: false
         },
         {
           type: actionTypes.SAVE_SERVERS,
@@ -60,7 +64,8 @@ describe("reducer", () => {
         { name: "a", distance: 100 },
         { name: "b", distance: 200 },
         { name: "c", distance: 200 }
-      ]
+      ],
+      loading: false
     });
   });
 });

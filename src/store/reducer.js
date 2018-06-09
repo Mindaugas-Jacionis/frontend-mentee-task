@@ -2,7 +2,8 @@ import * as actionTypes from "./actionTypes";
 
 const initialState = {
     token: "",
-    servers: ""
+    servers: "",
+    loading: false
 }
 
 const authSuccess = (state, action) =>{
@@ -10,7 +11,8 @@ const authSuccess = (state, action) =>{
    
     return {
         ...state,
-        token: action.token
+        token: action.token,
+        loading: false
     }
 }
 
@@ -40,7 +42,22 @@ const logout = (state, action) =>{
 
     return {
         token: "",
-        servers: ""
+        servers: "",
+        loading: false
+    }
+}
+
+const authStart = (state, action) =>{
+    return {
+        ...state,
+        loading: true
+    }
+}
+
+const authFail = (state, action) =>{
+    return {
+        ...state,
+        loading: false
     }
 }
 
@@ -52,6 +69,10 @@ const reducer = (state = initialState, action)=>{
         return saveServers(state, action);
         case actionTypes.AUTH_LOGOUT:
         return logout();
+        case actionTypes.AUTH_START:
+        return authStart();
+        case actionTypes.AUTH_FAIL:
+        return authFail();
         default:
         return state;
     }

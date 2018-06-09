@@ -7,7 +7,7 @@ import * as actions from "./store/actions";
 
 import "./App.css";
 
-class App extends Component {
+export class App extends Component {
   //if token stored in local storage ->
   //update redux state
   componentDidMount() {

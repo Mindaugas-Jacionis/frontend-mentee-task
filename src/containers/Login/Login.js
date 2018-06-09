@@ -5,7 +5,7 @@ import logo from "../../assets/testio-logo-light.png";
 
 import "./Login.css";
 
-class Login extends Component {
+export class Login extends Component {
   state = {
     username: "",
     password: ""

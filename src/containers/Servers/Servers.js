@@ -5,7 +5,7 @@ import * as actions from "../../store/actions";
 import Header from "../../components/Header/Header";
 import "./Servers.css";
 
-class Servers extends Component {
+export class Servers extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {

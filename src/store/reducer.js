@@ -3,7 +3,8 @@ import * as actionTypes from "./actionTypes";
 const initialState = {
     token: "",
     servers: "",
-    loading: false
+    loading: false,
+    error: false
 }
 
 const authSuccess = (state, action) =>{
@@ -12,7 +13,8 @@ const authSuccess = (state, action) =>{
     return {
         ...state,
         token: action.token,
-        loading: false
+        loading: false,
+        error: false
     }
 }
 
@@ -41,7 +43,8 @@ const saveServers = (state, action) =>{
     return{
         ...state,
         servers: sortedServers,
-        loading: false
+        loading: false,
+        error: false
     }
 }
 
@@ -51,7 +54,8 @@ const logout = () =>{
     return {
         token: "",
         servers: "",
-        loading: false
+        loading: false,
+        error: false
     }
 }
 
@@ -62,10 +66,12 @@ const fetchStart = (state) =>{
     }
 }
 
-const fetchFail = (state) =>{
+const fetchFail = (state, action) =>{
+    console.log(action);
     return {
         ...state,
-        loading: false
+        loading: false,
+        error: true
     }
 }
 
@@ -80,7 +86,7 @@ const reducer = (state = initialState, action)=>{
         case actionTypes.FETCH_START:
         return fetchStart(state);
         case actionTypes.FETCH_FAIL:
-        return fetchFail(state);
+        return fetchFail(state, action);
         case actionTypes.UPDATE_STATE:
         return updateState(state, action);
         default:

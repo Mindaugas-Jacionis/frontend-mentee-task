@@ -21,7 +21,6 @@ export const getServers = token => {
         dispatch(saveServers(response.data))
       })
       .catch(error => {
-        console.log(error);
         dispatch(fetchFail());
       });
   };
@@ -41,7 +40,6 @@ export const auth = (username, password) => {
         dispatch(authSuccess(response.data.token));
       })
       .catch(error => {
-        console.log(error);
         dispatch(fetchFail());
       });
   };

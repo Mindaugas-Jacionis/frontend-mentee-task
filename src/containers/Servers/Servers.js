@@ -22,9 +22,11 @@ export class Servers extends Component {
 
   render() {
     let servers = null;
+    
     if (this.props.loading) {
       servers = <Spinner marginTop="30px" color="#9fd533" />;
     }
+
     if (this.props.servers) {
       servers = this.props.servers.map(server => {
         return (
@@ -37,6 +39,19 @@ export class Servers extends Component {
       });
     }
 
+    if (this.props.error) {
+      servers = (
+        <p
+          style={{
+            color: "red",
+            margiTop: "30px",
+            textAlign: "center"
+          }}
+        >
+          Something went wrong
+        </p>
+      );
+    }
 
     return (
       <div className="servers-container">
@@ -63,7 +78,8 @@ const mapStateToProps = state => {
   return {
     servers: state.servers,
     token: state.token,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   };
 };
 

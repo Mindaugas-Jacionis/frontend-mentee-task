@@ -6,7 +6,8 @@ describe("reducer", () => {
     expect(reducer(undefined, {})).toEqual({
       token: "",
       servers: "",
-      loading: false
+      loading: false,
+      error: false
     });
   });
 
@@ -24,7 +25,8 @@ describe("reducer", () => {
     ).toEqual({
       token: "",
       servers: "",
-      loading: false
+      loading: false,
+      error: false
     });
   });
 
@@ -37,7 +39,34 @@ describe("reducer", () => {
     ).toEqual({
       token: "token",
       servers: "",
-      loading: false
+      loading: false,
+      error: false
+    });
+  });
+
+  it("should change error property to 'true' on fetchFail", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.FETCH_FAIL
+      })
+    ).toEqual({
+      token: "",
+      servers: "",
+      loading: false,
+      error: true
+    });
+  });
+
+  it("should change loading property to 'true' on fetchStart", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.FETCH_START
+      })
+    ).toEqual({
+      token: "",
+      servers: "",
+      loading: true,
+      error: false
     });
   });
 
@@ -47,7 +76,8 @@ describe("reducer", () => {
         {
           token: "",
           servers: "",
-          loading: false
+          loading: false,
+          error: false
         },
         {
           type: actionTypes.SAVE_SERVERS,
@@ -65,7 +95,8 @@ describe("reducer", () => {
         { name: "b", distance: 200 },
         { name: "c", distance: 200 }
       ],
-      loading: false
+      loading: false,
+      error: false
     });
   });
 });

@@ -11,19 +11,25 @@ export const saveServers = serversArray =>{
 
 export const getServers = token => {
   return dispatch => {
+    dispatch(fetchStart());
+
     axios
       .get("http://playground.tesonet.lt/v1/servers", {
         headers: { Authorization: token }
       })
       .then(response => {
         dispatch(saveServers(response.data))
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(fetchFail());
       });
   };
 };
 
 export const auth = (username, password) => {
   return dispatch => {
-    dispatch(authStart());
+    dispatch(fetchStart());
 
     const loginData = {
       username,
@@ -36,26 +42,33 @@ export const auth = (username, password) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch(authFail());
+        dispatch(fetchFail());
       });
   };
 };
 
-export const authStart = () => {
+export const fetchStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.FETCH_START
   };
 };
 
-export const authFail = () => {
+export const fetchFail = () => {
   return {
-    type: actionTypes.AUTH_FAIL
+    type: actionTypes.FETCH_FAIL
   };
 };
 
 export const authSuccess = token => {
   return {
     type: actionTypes.AUTH_SUCCESS,
+    token:token
+  };
+};
+
+export const updateState = token => {
+  return {
+    type: actionTypes.UPDATE_STATE,
     token:token
   };
 };

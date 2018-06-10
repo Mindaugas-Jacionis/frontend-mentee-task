@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Server from "../../components/Server/Server";
 import * as actions from "../../store/actions";
 import Header from "../../components/Header/Header";
+import Spinner from "../../components/Spinner/Spinner";
 import "./Servers.css";
 
 export class Servers extends Component {
@@ -21,6 +22,9 @@ export class Servers extends Component {
 
   render() {
     let servers = null;
+    if (this.props.loading) {
+      servers = <Spinner marginTop="30px" color="#9fd533" />;
+    }
     if (this.props.servers) {
       servers = this.props.servers.map(server => {
         return (
@@ -32,6 +36,7 @@ export class Servers extends Component {
         );
       });
     }
+
 
     return (
       <div className="servers-container">
@@ -54,9 +59,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     servers: state.servers,
-    token: state.token
+    token: state.token,
+    loading: state.loading
   };
 };
 

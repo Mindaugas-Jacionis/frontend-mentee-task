@@ -41,7 +41,7 @@ export class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateState: token => dispatch(actions.authSuccess(token))
+    updateState: token => dispatch(actions.updateState(token))
   };
 };
 

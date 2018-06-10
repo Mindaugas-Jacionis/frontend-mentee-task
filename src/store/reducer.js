@@ -16,6 +16,13 @@ const authSuccess = (state, action) =>{
     }
 }
 
+const updateState = (state, action) =>{
+    return {
+        ...state,
+        token: action.token
+    }
+}
+
 const saveServers = (state, action) =>{
     let sortedServers = [...action.servers];
     sortedServers.sort((a,b)=>{
@@ -33,11 +40,12 @@ const saveServers = (state, action) =>{
     });
     return{
         ...state,
-        servers: sortedServers
+        servers: sortedServers,
+        loading: false
     }
 }
 
-const logout = (state, action) =>{
+const logout = () =>{
     localStorage.removeItem("token");
 
     return {
@@ -47,14 +55,14 @@ const logout = (state, action) =>{
     }
 }
 
-const authStart = (state, action) =>{
+const fetchStart = (state) =>{
     return {
         ...state,
         loading: true
     }
 }
 
-const authFail = (state, action) =>{
+const fetchFail = (state) =>{
     return {
         ...state,
         loading: false
@@ -69,10 +77,12 @@ const reducer = (state = initialState, action)=>{
         return saveServers(state, action);
         case actionTypes.AUTH_LOGOUT:
         return logout();
-        case actionTypes.AUTH_START:
-        return authStart();
-        case actionTypes.AUTH_FAIL:
-        return authFail();
+        case actionTypes.FETCH_START:
+        return fetchStart(state);
+        case actionTypes.FETCH_FAIL:
+        return fetchFail(state);
+        case actionTypes.UPDATE_STATE:
+        return updateState(state, action);
         default:
         return state;
     }

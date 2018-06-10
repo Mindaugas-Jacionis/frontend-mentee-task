@@ -1,14 +1,22 @@
 import React from "react";
 import "./Spinner.css";
 
-const spinner = () => {
+const spinner = (props) => {
+  const color = {
+    backgroundColor: props.color
+  }
+
+  const marginTop = {
+    marginTop: props.marginTop
+  }
+
   return (
-    <div class="spinner">
-      <div class="rect1" />
-      <div class="rect2" />
-      <div class="rect3" />
-      <div class="rect4" />
-      <div class="rect5" />
+    <div style={marginTop} className="spinner">
+      <div  style={color} className="rect1" />
+      <div style={color} className="rect2" />
+      <div style={color} className="rect3" />
+      <div style={color} className="rect4" />
+      <div style={color} className="rect5" />
     </div>
   );
 };

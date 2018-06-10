@@ -1,0 +1,37 @@
+.list-style {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.server-container {
+  width: 100%;
+  border: grey 1px solid;
+  padding: 2em 0;
+}
+
+.server-name {
+  float: left;
+  margin-left: 2em;
+}
+
+.server-distance {
+  float: right;
+  margin-right: 2em;
+}
+
+.cols-title {
+  background-color: #d1d1d1;
+  border-bottom: black 2px solid;
+  width: 50%;
+}
+
+.title-server {
+  float: left;
+  margin: 0 auto;
+}
+
+.title-distance {
+  float: right;
+  margin: 0 auto;
+}

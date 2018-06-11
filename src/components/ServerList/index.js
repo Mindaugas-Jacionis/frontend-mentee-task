@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ServerList.css';
+import './ServerList.scss';
 
 const ServerListItem = ({ servers }) => (
   <li>
-    <div className="server-container">
-      <Link to='/' className="server-name">
-        {servers.name}
-      </Link>
-      <div className="server-distance"> {servers.distance} km</div>
+    <Link to='/'>
+    <div className="server-box">
+      <div>{servers.name}</div>
+      <div> {servers.distance} km</div>
     </div>
+    </Link>
   </li>
 )
 
 const ServerList = (props) => (
 
-    <div>
+    <div className="server-container">
 
-      <div className="cols-title">
+      <div className="cols-title server-box">
         <div>Server</div>
         <div>Distance</div>
       </div>

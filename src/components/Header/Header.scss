@@ -1,0 +1,27 @@
+$color_logout: #2f3254;
+
+
+.header-style {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  height: 100px;
+}
+
+.logout-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: $color_logout;
+  min-width: 60px;
+}
+
+.logo-style {
+    width: 110px;
+}
+
+.logout-ico-style {
+  height: 14px;
+}

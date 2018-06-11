@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Main from '../Main';
-import './App.css';
+import Header from '../Header';
+import './App.scss';
 import 'whatwg-fetch';
 
 class App extends Component {
@@ -8,9 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         
-        <header className="App-header">
-          <h1 className="App-title">Servers List</h1>
-        </header>
+        <Header />
 
         <Main />
 

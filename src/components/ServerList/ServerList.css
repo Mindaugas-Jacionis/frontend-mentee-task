@@ -5,33 +5,18 @@
 }
 
 .server-container {
-  width: 100%;
   border: grey 1px solid;
-  padding: 2em 0;
-}
-
-.server-name {
-  float: left;
-  margin-left: 2em;
-}
-
-.server-distance {
-  float: right;
-  margin-right: 2em;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 1em;
 }
 
 .cols-title {
-  background-color: #d1d1d1;
-  border-bottom: black 2px solid;
-  width: 50%;
-}
-
-.title-server {
-  float: left;
-  margin: 0 auto;
-}
-
-.title-distance {
-  float: right;
-  margin: 0 auto;
+  background-color: #f5f5f5;
+  color: #999999;
+  border-top: #e6e6e6 1px solid;
+  border-bottom: #e6e6e6 1px solid; 
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 1em;
 }

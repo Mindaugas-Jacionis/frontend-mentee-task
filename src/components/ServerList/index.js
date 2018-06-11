@@ -8,7 +8,7 @@ const ServerListItem = ({ servers }) => (
       <Link to='/' className="server-name">
         {servers.name}
       </Link>
-      <label className="server-distance"> {servers.distance} km</label>
+      <div className="server-distance"> {servers.distance} km</div>
     </div>
   </li>
 )
@@ -17,9 +17,9 @@ const ServerList = (props) => (
 
     <div>
 
-      <div>
-        <h3 className="title-server cols-title">Server</h3>
-        <h3 className="title-distance cols-title">Distance</h3>
+      <div className="cols-title">
+        <div>Server</div>
+        <div>Distance</div>
       </div>
 
       <ul className="list-style">

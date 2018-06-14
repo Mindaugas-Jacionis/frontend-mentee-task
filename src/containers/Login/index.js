@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../store/actions';
 import logo from '../../assets/logos/testio-logo-light.png';
-import { Spinner } from '../../components';
+import { Spinner, UserIcon, PassIcon } from '../../components';
 import './index.css';
 
 export class Login extends Component {
@@ -38,20 +38,25 @@ export class Login extends Component {
           <div className="login-logo-container">
             <img src={logo} alt="logo" />
           </div>
-
           <form className="login-form" onSubmit={this.formSubmitHandler}>
+          <label>
+          <UserIcon className="login-icon"/>
             <input
-              onChange={this.usernameChangeHandler}
-              placeholder="Username"
-              type="text"
-              required
-            />
+                onChange={this.usernameChangeHandler}
+                placeholder="Username"
+                type="text"
+                required
+              />
+          </label>
+          <label>
+           <PassIcon className="login-icon"/>
             <input
-              onChange={this.passwordChangeHandler}
-              placeholder="Password"
-              type="password"
-              required
-            />
+                onChange={this.passwordChangeHandler}
+                placeholder="Password"
+                type="password"
+                required
+              />
+          </label>
             <button>{this.props.loading ? <Spinner /> : 'Log in'}</button>
           </form>
         </div>

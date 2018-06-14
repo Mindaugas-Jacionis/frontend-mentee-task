@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../store/actions';
 import { Header, Spinner, Server } from '../../components';
+import "./index.css";
 
 export class Servers extends Component {
   componentDidMount() {

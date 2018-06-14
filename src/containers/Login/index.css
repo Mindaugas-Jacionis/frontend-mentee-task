@@ -35,16 +35,11 @@
   width: 300px;
 }
 
-.login-form input[type="text"] {
-  background-image: url("../../assets/icons/ico-username.png");
-}
 
-.login-form input[type="password"] {
-  background-image: url("../../assets/icons/ico-lock.png");
-}
-
-.login-form input {
+.login-form label input {
+  width: 100%;
   height: 55px;
+  box-sizing: border-box;
   margin-bottom: 20px;
   border: none;
   border-radius: 5px;
@@ -62,6 +57,17 @@
 .login-form input:focus {
   color: #999;
   outline: none;
+}
+
+.login-form label{
+  position: relative;
+}
+
+.login-form svg{
+  position: absolute;
+  left: 20px;
+  top: 17.5px;
+  fill:#ccc;
 }
 
 .login-form button {
@@ -109,6 +115,11 @@
   .login-form input {
     height: auto;
     margin-bottom: 0;
+  }
+
+  .login-form svg{
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .login-form button {

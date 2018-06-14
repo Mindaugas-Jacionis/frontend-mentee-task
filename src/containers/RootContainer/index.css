@@ -1,4 +1,4 @@
-.App {
+.root-container {
   min-height: 100vh;
   width: 100%;
 }
@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar-track,
-::-webkit-scrollbar-track-piece{
+::-webkit-scrollbar-track-piece {
   background: none;
 }
 ::-webkit-scrollbar-thumb {

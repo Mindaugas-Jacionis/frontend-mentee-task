@@ -7,7 +7,7 @@
       rgba(11, 15, 39, 0.8),
       rgba(11, 15, 39, 0.8)
     ),
-    url("../../assets/TestioBG.jpg");
+    url("../../assets/backgrounds/TestioBG.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left center;
@@ -25,7 +25,7 @@
   margin-bottom: 75px;
 }
 
-.login-logo-container img{
+.login-logo-container img {
   width: 250px;
 }
 
@@ -36,11 +36,11 @@
 }
 
 .login-form input[type="text"] {
-  background-image: url("../../assets/ico-username.png");
+  background-image: url("../../assets/icons/ico-username.png");
 }
 
 .login-form input[type="password"] {
-  background-image: url("../../assets/ico-lock.png");
+  background-image: url("../../assets/icons/ico-lock.png");
 }
 
 .login-form input {

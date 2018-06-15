@@ -39,24 +39,26 @@ export class Login extends Component {
             <img src={logo} alt="logo" />
           </div>
           <form className="login-form" onSubmit={this.formSubmitHandler}>
-          <label>
-          <UserIcon className="login-icon"/>
-            <input
+            <label htmlFor="username">
+              <UserIcon className="login-icon" />
+              <input
+                name="username"
                 onChange={this.usernameChangeHandler}
                 placeholder="Username"
                 type="text"
                 required
               />
-          </label>
-          <label>
-           <PassIcon className="login-icon"/>
-            <input
+            </label>
+            <label htmlFor="password">
+              <PassIcon className="login-icon" />
+              <input
+                name="password"
                 onChange={this.passwordChangeHandler}
                 placeholder="Password"
                 type="password"
                 required
               />
-          </label>
+            </label>
             <button>{this.props.loading ? <Spinner /> : 'Log in'}</button>
           </form>
         </div>

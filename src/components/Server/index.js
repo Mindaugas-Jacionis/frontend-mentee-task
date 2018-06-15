@@ -19,7 +19,7 @@ Server.propTypes = {
 };
 
 Server.defaultProps = {
-  name: '',
+  name: 'error',
   distance: 0,
 };
 

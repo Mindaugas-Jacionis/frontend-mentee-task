@@ -49,7 +49,7 @@ const logout = () => {
 
   return {
     token: '',
-    servers: '',
+    servers: [],
     loading: false,
     error: false,
   };

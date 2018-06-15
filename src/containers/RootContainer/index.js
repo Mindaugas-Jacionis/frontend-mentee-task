@@ -6,7 +6,7 @@ import * as actions from '../../store/actions';
 import { Login, Servers } from '../';
 import './index.css';
 
-class RootContainer extends Component {
+export class RootContainer extends Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.props.updateState(localStorage.getItem('token'));

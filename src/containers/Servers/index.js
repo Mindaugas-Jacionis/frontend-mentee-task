@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../store/actions';
 import { Header, Spinner, Server } from '../../components';
-import "./index.css";
+import './index.css';
 
 export class Servers extends Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ export class Servers extends Component {
       servers = <Spinner marginTop="30px" color="#9fd533" />;
     }
 
-    if (this.props.servers) {
+    if (this.props.servers.length) {
       servers = this.props.servers.map(server => (
         <Server
           key={server.name + server.distance}

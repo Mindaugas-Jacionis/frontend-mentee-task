@@ -23,6 +23,8 @@
 
 .header button svg {
   fill: #2f3254;
+  width: 17px;
+  height: 17px;
 }
 
 .header button:hover {

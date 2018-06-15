@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../assets/logos/testio-logo-dark.png';
+import icons from '../../assets/icons/symbol-defs.svg';
 import './index.css';
-import { LogoutIcon } from '../';
 
 class Header extends Component {
   render() {
@@ -13,7 +13,9 @@ class Header extends Component {
         </div>
         <div>
           <button onClick={this.props.logout}>
-            <LogoutIcon />Logout
+            <svg>
+              <use xlinkHref={`${icons}#icon-logout`} />
+            </svg>Logout
           </button>
         </div>
       </header>

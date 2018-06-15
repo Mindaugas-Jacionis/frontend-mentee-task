@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../store/actions';
 import logo from '../../assets/logos/testio-logo-light.png';
-import { Spinner, UserIcon, PassIcon } from '../../components';
+import icons from '../../assets/icons/symbol-defs.svg';
+import { Spinner } from '../../components';
 import './index.css';
 
 export class Login extends Component {
@@ -40,7 +41,9 @@ export class Login extends Component {
           </div>
           <form className="login-form" onSubmit={this.formSubmitHandler}>
             <label htmlFor="username">
-              <UserIcon className="login-icon" />
+              <svg className="login-icon">
+                <use xlinkHref={`${icons}#icon-username`} />
+              </svg>
               <input
                 name="username"
                 onChange={this.usernameChangeHandler}
@@ -50,7 +53,9 @@ export class Login extends Component {
               />
             </label>
             <label htmlFor="password">
-              <PassIcon className="login-icon" />
+              <svg className="login-icon">
+                <use xlinkHref={`${icons}#icon-password`} />
+              </svg>
               <input
                 name="password"
                 onChange={this.passwordChangeHandler}

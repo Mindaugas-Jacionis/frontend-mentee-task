@@ -12,25 +12,28 @@ export class RootContainer extends Component {
       this.props.updateState(localStorage.getItem('token'));
     }
   }
+
+  createServerRoutes = () => (
+    <Switch>
+      <Route path="/servers" exact component={Servers} />
+      <Redirect to="/servers" />
+    </Switch>
+  );
+
+  createLoginRoutes = () => (
+    <Switch>
+      <Route path="/" exact component={Login} />
+      <Redirect to="/" />
+    </Switch>
+  );
+
   render() {
-    // guard routes depending on login state
-
-    let routes = (
-      <Switch>
-        <Route path="/" exact component={Login} />
-        <Redirect to="/" />
-      </Switch>
+    const hasToken = !!localStorage.getItem('token');
+    return (
+      <div className="root-component">
+        {hasToken ? this.createServerRoutes() : this.createLoginRoutes()}
+      </div>
     );
-
-    if (localStorage.getItem('token')) {
-      routes = (
-        <Switch>
-          <Route path="/servers" exact component={Servers} />
-          <Redirect to="/servers" />
-        </Switch>
-      );
-    }
-    return <div className="root-component">{routes}</div>;
   }
 }
 

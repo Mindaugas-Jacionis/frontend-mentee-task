@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import svgForEverybody from 'svg4everybody';
 import * as actions from '../../store/actions';
 import { Login, Servers } from '../';
 import './index.css';
 
 export class RootContainer extends Component {
   componentDidMount() {
+    svgForEverybody();
     if (localStorage.getItem('token')) {
       this.props.updateState(localStorage.getItem('token'));
     }

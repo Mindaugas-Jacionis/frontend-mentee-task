@@ -1,7 +1,7 @@
 module.exports = {
   extends: 'airbnb',
   rules: {
-    'react/jsx-filename-extension': 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'react/prefer-stateless-function': 0,
     'no-use-before-define': 0,
     'max-len': 0,

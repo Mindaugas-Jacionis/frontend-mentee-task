@@ -30,17 +30,18 @@ export class Login extends Component {
 
   render() {
     return (
-      <div className="login-container">
-        <div className="login-form-container">
-          <div className="login-logo-container">
-            <img src={logo} alt="logo" />
+      <div className="login__grid">
+        <div className="login__grid__item">
+          <div className="login__logo">
+            <img className="login__logo__img" src={logo} alt="logo" />
           </div>
-          <form className="login-form" onSubmit={this.formSubmitHandler}>
-            <label htmlFor="username">
-              <svg className="login-icon">
+          <form className="login__form" onSubmit={this.formSubmitHandler}>
+            <label className="login__form__label" htmlFor="username">
+              <svg className="login__form__icon">
                 <use xlinkHref={`${icons}#icon-username`} />
               </svg>
               <input
+                className="login__form__input"
                 name="username"
                 onChange={event => this.inputChangeHandler(event, 'username')}
                 placeholder="Username"
@@ -48,11 +49,12 @@ export class Login extends Component {
                 required
               />
             </label>
-            <label htmlFor="password">
-              <svg className="login-icon">
+            <label className="login__form__label" htmlFor="password">
+              <svg className="login__form__icon">
                 <use xlinkHref={`${icons}#icon-password`} />
               </svg>
               <input
+                className="login__form__input"
                 name="password"
                 onChange={event => this.inputChangeHandler(event, 'password')}
                 placeholder="Password"
@@ -60,7 +62,7 @@ export class Login extends Component {
                 required
               />
             </label>
-            <button type="submit">
+            <button className="login__form__button" type="submit">
               {this.props.loading ? <Spinner /> : 'Log in'}
             </button>
           </form>

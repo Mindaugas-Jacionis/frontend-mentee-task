@@ -5,9 +5,9 @@ import './index.css';
 class Server extends Component {
   render() {
     return (
-      <div className="server-container">
-        <p>{this.props.name}</p>
-        <p>{this.props.distance} km</p>
+      <div className="server">
+        <p className="server__paragraph">{this.props.name}</p>
+        <p className="server__paragraph">{this.props.distance} km</p>
       </div>
     );
   }

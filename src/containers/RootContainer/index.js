@@ -30,7 +30,7 @@ export class RootContainer extends Component {
   render() {
     const hasToken = !!localStorage.getItem('token');
     return (
-      <div className="root-component">
+      <div className="root">
         {hasToken ? this.createServerRoutes() : this.createLoginRoutes()}
       </div>
     );

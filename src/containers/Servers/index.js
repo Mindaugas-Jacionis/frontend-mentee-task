@@ -28,7 +28,9 @@ export class Servers extends Component {
       />
     ));
 
-  renderLoading = () => <Spinner size="large" mode="fullscreen" color="#9fd533" />;
+  renderLoading = () => (
+    <Spinner size="large" mode="fullscreen" color="#9fd533" />
+  );
 
   renderError = () => (
     <p
@@ -46,13 +48,13 @@ export class Servers extends Component {
     const { loading, error, logout } = this.props;
 
     return (
-      <div className="servers-container">
+      <div className="servers">
         <Header logout={logout} />
-        <div className="servers-list-header">
-          <p>servers</p>
-          <p>distance</p>
+        <div className="servers__header">
+          <p className="servers__header__paragraph">servers</p>
+          <p className="servers__header__paragraph">distance</p>
         </div>
-        <div className="servers-list">
+        <div className="servers__list">
           {loading ? this.renderLoading() : null}
           {error ? this.renderError() : this.renderServers()}
         </div>

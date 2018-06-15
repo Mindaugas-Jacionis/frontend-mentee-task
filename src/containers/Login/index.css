@@ -1,4 +1,4 @@
-.login-container {
+.login__grid {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,28 +15,28 @@
   width: 100%;
 }
 
-.login-form-container {
+.login__grid__item{
   text-align: center;
   display: flex;
   flex-direction: column;
 }
 
-.login-logo-container {
+.login__logo {
   margin-bottom: 75px;
 }
 
-.login-logo-container img {
+.login__logo__img {
   width: 250px;
 }
 
-.login-form {
+.login__form {
   display: flex;
   flex-direction: column;
   width: 300px;
 }
 
 
-.login-form label input {
+.login__form__input {
   width: 100%;
   height: 55px;
   box-sizing: border-box;
@@ -45,25 +45,22 @@
   border-radius: 5px;
   padding-left: 55px;
   font-size: 16px;
-  background-size: 16px;
-  background-repeat: no-repeat;
-  background-position: 20px center;
 }
 
-.login-form input::placeholder {
+.login__form__input::placeholder {
   color: #ccc;
 }
 
-.login-form input:focus {
+.login__form__input:focus {
   color: #999;
   outline: none;
 }
 
-.login-form label{
+.login__form__label{
   position: relative;
 }
 
-.login-form svg{
+.login__form__icon{
   position: absolute;
   left: 20px;
   top: 17.5px;
@@ -72,7 +69,7 @@
   width: 20px;
 }
 
-.login-form button {
+.login__form__button {
   height: 55px;
   background: #9fd533;
   border: none;
@@ -82,49 +79,50 @@
   font-size: 16px;
 }
 
-.login-form button:hover {
+.login__form__button:hover {
   background: #86b300;
   cursor: pointer;
 }
 
 @supports (display: grid) {
-  .login-container {
+  .login__grid {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr repeat(12, minmax(max-content, 90px)) 1fr;
     align-items: center;
   }
 
-  .login-form-container {
+  .login__grid__item {
     grid-column: 6 / 10;
     display: grid;
     grid-template-rows: repeat(5, 55px);
     grid-row-gap: 20px;
   }
 
-  .login-logo-container {
+  .login__logo {
     grid-row: 1 / 3;
     margin-bottom: 0;
   }
 
-  .login-form {
+  .login__form {
     display: grid;
     grid-template-rows: repeat(3, 55px);
     grid-row-gap: 20px;
     width: auto;
   }
 
-  .login-form input {
-    height: auto;
+  .login__form__input {
+    height: 100%;
     margin-bottom: 0;
+    width: 100%;
   }
 
-  .login-form svg{
+  .login__form_icon{
     top: 50%;
     transform: translateY(-50%);
   }
 
-  .login-form button {
+  .login__form__button {
     height: auto;
   }
 }

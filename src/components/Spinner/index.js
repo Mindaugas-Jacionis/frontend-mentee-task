@@ -31,11 +31,11 @@ class Spinner extends Component {
     return (
       <div style={modeStyle}>
         <div style={spinnerSize} className="spinner">
-          <div style={spinnerColor} className="rect1" />
-          <div style={spinnerColor} className="rect2" />
-          <div style={spinnerColor} className="rect3" />
-          <div style={spinnerColor} className="rect4" />
-          <div style={spinnerColor} className="rect5" />
+          <div style={spinnerColor} className="spinner__rect1" />
+          <div style={spinnerColor} className="spinner__rect2" />
+          <div style={spinnerColor} className="spinner__rect3" />
+          <div style={spinnerColor} className="spinner__rect4" />
+          <div style={spinnerColor} className="spinner__rect5" />
         </div>
       </div>
     );

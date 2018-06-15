@@ -6,11 +6,11 @@
   height: 115px;
 }
 
-.header-logo-container img {
+.header__logo__img {
   width: 115px;
 }
 
-.header button {
+.header__logout__button {
   color: #636063;
   border: none;
   background: none;
@@ -21,16 +21,16 @@
   align-items: center;
 }
 
-.header button svg {
+.header__logout__icon {
   fill: #2f3254;
   width: 17px;
   height: 17px;
 }
 
-.header button:hover {
+.header__logout__button:hover {
   color: #99cc33;
 }
 
-.header button:hover svg {
+.header__logout__button:hover .header__logout__icon {
   fill: #99cc33;
 }

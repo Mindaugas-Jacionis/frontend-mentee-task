@@ -8,12 +8,12 @@ class Header extends Component {
   render() {
     return (
       <header className="header">
-        <div className="header-logo-container">
-          <img src={logo} alt="logo" />
+        <div className="header__logo">
+          <img className="header__logo__img" src={logo} alt="logo" />
         </div>
-        <div>
-          <button onClick={this.props.logout}>
-            <svg>
+        <div className="header__logout">
+          <button className="header__logout__button" onClick={this.props.logout}>
+            <svg className="header__logout__icon">
               <use xlinkHref={`${icons}#icon-logout`} />
             </svg>Logout
           </button>

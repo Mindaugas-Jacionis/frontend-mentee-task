@@ -7,19 +7,19 @@ import Server from './';
 configure({ adapter: new Adapter() });
 /* eslint-disable  react/jsx-closing-tag-location */
 describe('<Server/>', () => {
-  it('should render divs with content according to passed props', () => {
+  it('should render paragraphs with content according to passed props', () => {
     const wrapper = shallow(<Server name="passed name" distance={30} />);
     expect(wrapper.contains(<div className="server-container">
-      <div>passed name</div>
-      <div>30 km</div>
+      <p>passed name</p>
+      <p>30 km</p>
     </div>)).toEqual(true);
   });
 
-  it('should render divs with content according to default props', () => {
+  it('should render paragraphs with content according to default props', () => {
     const wrapper = shallow(<Server />);
     expect(wrapper.contains(<div className="server-container">
-      <div>error</div>
-      <div>0 km</div>
+      <p>error</p>
+      <p>0 km</p>
     </div>)).toEqual(true);
   });
 });

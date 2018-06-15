@@ -4,21 +4,39 @@ import './index.css';
 
 class Spinner extends Component {
   render() {
-    const color = {
-      backgroundColor: this.props.color,
+    const { color, mode, size } = this.props;
+    const height = size === 'small' ? '35px' : '70px';
+    const width = size === 'small' ? '70px' : '140px';
+
+    const spinnerSize = {
+      height,
+      width,
     };
 
-    const marginTop = {
-      marginTop: this.props.marginTop,
+    const spinnerColor = {
+      backgroundColor: color,
     };
+
+    const modeStyle =
+      mode === 'fullscreen'
+        ? {
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }
+        : {};
 
     return (
-      <div style={marginTop} className="spinner">
-        <div style={color} className="rect1" />
-        <div style={color} className="rect2" />
-        <div style={color} className="rect3" />
-        <div style={color} className="rect4" />
-        <div style={color} className="rect5" />
+      <div style={modeStyle}>
+        <div style={spinnerSize} className="spinner">
+          <div style={spinnerColor} className="rect1" />
+          <div style={spinnerColor} className="rect2" />
+          <div style={spinnerColor} className="rect3" />
+          <div style={spinnerColor} className="rect4" />
+          <div style={spinnerColor} className="rect5" />
+        </div>
       </div>
     );
   }
@@ -26,12 +44,14 @@ class Spinner extends Component {
 
 Spinner.propTypes = {
   color: PropTypes.string,
-  marginTop: PropTypes.string,
+  mode: PropTypes.string,
+  size: PropTypes.string,
 };
 
 Spinner.defaultProps = {
   color: 'white',
-  marginTop: '0',
+  mode: 'default',
+  size: 'small',
 };
 
 export default Spinner;

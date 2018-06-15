@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  height: 115px;
+}
+
+.header__logo__img {
+  width: 115px;
+}
+
+.header__logout__button {
+  color: #636063;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__logout__icon {
+  fill: #2f3254;
+  width: 17px;
+  height: 17px;
+}
+
+.header__logout__button:hover {
+  color: #99cc33;
+}
+
+.header__logout__button:hover .header__logout__icon {
+  fill: #99cc33;
+}

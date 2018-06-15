@@ -13,23 +13,40 @@ describe('<Spinner/>', () => {
       style={{
             height: '100%',
             width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            position: 'relative',
           }}
     >
       <div
         style={{
               height: '70px',
               width: '140px',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              position: 'absolute',
             }}
         className="spinner"
       >
-        <div style={{ backgroundColor: 'red' }} className="rect1" />
-        <div style={{ backgroundColor: 'red' }} className="rect2" />
-        <div style={{ backgroundColor: 'red' }} className="rect3" />
-        <div style={{ backgroundColor: 'red' }} className="rect4" />
-        <div style={{ backgroundColor: 'red' }} className="rect5" />
+        <div
+          style={{ backgroundColor: 'red' }}
+          className="spinner__rect spinner__rect--1"
+        />
+        <div
+          style={{ backgroundColor: 'red' }}
+          className="spinner__rect spinner__rect--2"
+        />
+        <div
+          style={{ backgroundColor: 'red' }}
+          className="spinner__rect spinner__rect--3"
+        />
+        <div
+          style={{ backgroundColor: 'red' }}
+          className="spinner__rect spinner__rect--4"
+        />
+        <div
+          style={{ backgroundColor: 'red' }}
+          className="spinner__rect spinner__rect--5"
+        />
       </div>
     </div>)).toEqual(true);
   });
@@ -44,11 +61,26 @@ describe('<Spinner/>', () => {
             }}
         className="spinner"
       >
-        <div style={{ backgroundColor: 'white' }} className="rect1" />
-        <div style={{ backgroundColor: 'white' }} className="rect2" />
-        <div style={{ backgroundColor: 'white' }} className="rect3" />
-        <div style={{ backgroundColor: 'white' }} className="rect4" />
-        <div style={{ backgroundColor: 'white' }} className="rect5" />
+        <div
+          style={{ backgroundColor: 'white' }}
+          className="spinner__rect spinner__rect--1"
+        />
+        <div
+          style={{ backgroundColor: 'white' }}
+          className="spinner__rect spinner__rect--2"
+        />
+        <div
+          style={{ backgroundColor: 'white' }}
+          className="spinner__rect spinner__rect--3"
+        />
+        <div
+          style={{ backgroundColor: 'white' }}
+          className="spinner__rect spinner__rect--4"
+        />
+        <div
+          style={{ backgroundColor: 'white' }}
+          className="spinner__rect spinner__rect--5"
+        />
       </div>
     </div>)).toEqual(true);
   });

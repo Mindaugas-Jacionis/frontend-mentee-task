@@ -8,10 +8,20 @@ class Spinner extends Component {
     const height = size === 'small' ? '35px' : '70px';
     const width = size === 'small' ? '70px' : '140px';
 
-    const spinnerSize = {
-      height,
-      width,
-    };
+    const spinnerSize =
+      mode === 'fullscreen'
+        ? {
+          height,
+          width,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          position: 'absolute',
+        }
+        : {
+          height,
+          width,
+        };
 
     const spinnerColor = {
       backgroundColor: color,
@@ -22,20 +32,33 @@ class Spinner extends Component {
         ? {
           height: '100%',
           width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          position: 'relative',
         }
         : {};
 
     return (
       <div style={modeStyle}>
         <div style={spinnerSize} className="spinner">
-          <div style={spinnerColor} className="spinner__rect1" />
-          <div style={spinnerColor} className="spinner__rect2" />
-          <div style={spinnerColor} className="spinner__rect3" />
-          <div style={spinnerColor} className="spinner__rect4" />
-          <div style={spinnerColor} className="spinner__rect5" />
+          <div
+            style={spinnerColor}
+            className="spinner__rect spinner__rect--1"
+          />
+          <div
+            style={spinnerColor}
+            className="spinner__rect spinner__rect--2"
+          />
+          <div
+            style={spinnerColor}
+            className="spinner__rect spinner__rect--3"
+          />
+          <div
+            style={spinnerColor}
+            className="spinner__rect spinner__rect--4"
+          />
+          <div
+            style={spinnerColor}
+            className="spinner__rect spinner__rect--5"
+          />
         </div>
       </div>
     );

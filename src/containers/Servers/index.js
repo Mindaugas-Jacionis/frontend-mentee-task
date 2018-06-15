@@ -15,49 +15,56 @@ export class Servers extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.token === '') {
-      this.props.history.push('/');
+      this.props.history.replace('/');
     }
   }
 
+  renderServers = () =>
+    this.props.servers.map(server => (
+      <Server
+        key={server.name + server.distance}
+        name={server.name}
+        distance={server.distance}
+      />
+    ));
+
+  renderLoading = () => <Spinner marginTop="30px" color="#9fd533" />;
+
+  renderError = () => (
+    <p
+      style={{
+        color: 'red',
+        margiTop: '30px',
+        textAlign: 'center',
+      }}
+    >
+      Something went wrong
+    </p>
+  );
+
   render() {
-    let servers = null;
+    let content = null;
 
     if (this.props.loading) {
-      servers = <Spinner marginTop="30px" color="#9fd533" />;
+      content = this.renderLoading();
     }
 
     if (this.props.servers.length) {
-      servers = this.props.servers.map(server => (
-        <Server
-          key={server.name + server.distance}
-          name={server.name}
-          distance={server.distance}
-        />
-      ));
+      content = this.renderServers();
     }
 
     if (this.props.error) {
-      servers = (
-        <p
-          style={{
-            color: 'red',
-            margiTop: '30px',
-            textAlign: 'center',
-          }}
-        >
-          Something went wrong
-        </p>
-      );
+      content = this.renderError();
     }
 
     return (
       <div className="servers-container">
         <Header logout={this.props.logout} />
         <div className="servers-list-header">
-          <p>SERVERS</p>
-          <p>DISTANCE</p>
+          <p>servers</p>
+          <p>distance</p>
         </div>
-        <div className="servers-list">{servers}</div>
+        <div className="servers-list">{content}</div>
       </div>
     );
   }

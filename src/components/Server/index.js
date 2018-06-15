@@ -6,8 +6,8 @@ class Server extends Component {
   render() {
     return (
       <div className="server-container">
-        <div>{this.props.name}</div>
-        <div>{this.props.distance} km</div>
+        <p>{this.props.name}</p>
+        <p>{this.props.distance} km</p>
       </div>
     );
   }

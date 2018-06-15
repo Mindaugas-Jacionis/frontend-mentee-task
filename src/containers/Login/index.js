@@ -24,12 +24,8 @@ export class Login extends Component {
     this.props.onLogin(this.state.username, this.state.password);
   };
 
-  usernameChangeHandler = (event) => {
-    this.setState({ username: event.target.value });
-  };
-
-  passwordChangeHandler = (event) => {
-    this.setState({ password: event.target.value });
+  inputChangeHandler = (event, field) => {
+    this.setState({ [field]: event.target.value });
   };
 
   render() {
@@ -46,7 +42,7 @@ export class Login extends Component {
               </svg>
               <input
                 name="username"
-                onChange={this.usernameChangeHandler}
+                onChange={event => this.inputChangeHandler(event, 'username')}
                 placeholder="Username"
                 type="text"
                 required
@@ -58,13 +54,15 @@ export class Login extends Component {
               </svg>
               <input
                 name="password"
-                onChange={this.passwordChangeHandler}
+                onChange={event => this.inputChangeHandler(event, 'password')}
                 placeholder="Password"
                 type="password"
                 required
               />
             </label>
-            <button>{this.props.loading ? <Spinner /> : 'Log in'}</button>
+            <button type="submit">
+              {this.props.loading ? <Spinner /> : 'Log in'}
+            </button>
           </form>
         </div>
       </div>

@@ -1,40 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { apiRequest } from '../../actions';
 import ServerList from '../../components/ServerList';
+import Spinner from '../../components/Spinner';
 
 class Servers extends Component {
 
-  state = {
-    token: '',
-    servers: [],
-    isFetching: true
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      token: '',
+      servers: [],
+      isFetching: true
+    }
   }
 
   componentDidMount() {
+    this.props.onAPIRequest();
+  }
 
-    fetch('http://playground.tesonet.lt/v1/tokens', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: 'tesonet',
-        password: 'partyanimal',
+  componentWillReceiveProps(newProps) {
+    setTimeout(() => this.setState({
+      servers: newProps.servers
+    }, () => {
+      this.setState({
+        isFetching: false
       })
-    }).then( response => response.json())
-      .then( result => this.setState({ token: result.token }))
-      .then( () => {
-
-        fetch('http://playground.tesonet.lt/v1/servers', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${this.state.token}`
-            }
-          }).then( response => response.json())
-            .then( result => this.setState({ servers: result, isFetching: false }));
-
-      });
-
+    }), 500);
   }
 
   render() {
@@ -45,16 +38,24 @@ class Servers extends Component {
         {
           isFetching && servers.length === 0
           &&
-          <p>No servers have been found.</p>
+          <Spinner spinnerType="serverSpinner" />
         }
         {
-          !isFetching && servers.length !== 0
+          !isFetching && servers.length > 0
           &&
-          <ServerList servers={this.state.servers} />
+          <ServerList servers={servers} />
         }
       </div>
     );
   }
 }
 
-export default Servers;
+const mapStateToProps = (state) => ({
+    servers: state.servers
+});
+
+const mapActionsToProps = {
+  onAPIRequest: apiRequest
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Servers);

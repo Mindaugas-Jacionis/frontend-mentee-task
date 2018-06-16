@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logUserOut } from '../../actions';
 import logoTestio from '../../assets/logotype-testio.png';
 import logoutIco from '../../assets/ico_logout.png';
 import './Header.scss';
 
-const Header = (props) => (
-  <div className="header-style">
+class Header extends Component {
 
-    <div><img src={logoTestio} alt="Testio logo" className="logo-style" /></div>
+  render() {
+    return (
+      <div className="header-style">
 
-    <div className="logout-btn">
-      <img src={logoutIco} className="logout-ico-style" alt="Logout Icon" />
-      <div> Logout</div>
-    </div>
+        <div><img src={logoTestio} alt="Testio logo" className="logo-style" /></div>
 
-  </div>
-);
+        <div className="logout-btn">
+          <img src={logoutIco} className="logout-ico-style" alt="Logout Icon" />
+          <div onClick={this.props.onLogoutRequest}>Logout</div>
+        </div>
 
-export default Header;
+      </div>
+    );
+  }
+}
+
+const mapActionsToProps = {
+  onLogoutRequest: logUserOut
+};
+
+export default connect(null, mapActionsToProps)(Header);

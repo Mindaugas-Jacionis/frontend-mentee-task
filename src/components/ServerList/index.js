@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ServerList.scss';
 
-const ServerListItem = ({ servers }) => (
+const ServerListItem = ({ server }) => (
   <li>
     <Link to='/'>
     <div className="server-box">
-      <div>{servers.name}</div>
-      <div> {servers.distance} km</div>
+      <div>{server.name}</div>
+      <div> {server.distance} km</div>
     </div>
     </Link>
   </li>
@@ -15,7 +15,7 @@ const ServerListItem = ({ servers }) => (
 
 const ServerList = (props) => (
 
-    <div className="server-container">
+    <div className="main-container">
 
       <div className="cols-title server-box">
         <div>Server</div>
@@ -24,7 +24,7 @@ const ServerList = (props) => (
 
       <ul className="list-style">
         {props.servers.map(servers => (
-          <ServerListItem servers={servers} key={servers.name} />
+          <ServerListItem server={servers} key={`${servers.name} : ${servers.distance}`} />
         ))}
       </ul>
 

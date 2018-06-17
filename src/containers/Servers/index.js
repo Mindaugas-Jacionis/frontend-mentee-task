@@ -34,7 +34,7 @@ class Servers extends Component {
     const { servers, isFetching } = this.state;
 
     return (
-      <div>
+      <div style={centrifyingDiv}>
         {
           isFetching && servers.length === 0
           &&
@@ -57,5 +57,11 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
   onAPIRequest: apiRequest
 }
+
+const centrifyingDiv = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center"
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(Servers);

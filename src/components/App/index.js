@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Main from '../Main';
 import Header from '../Header';
 import { authorization, logUserOut, apiRequest } from '../../actions';
-import './App.scss';
 import 'whatwg-fetch';
 
 class App extends Component {
@@ -11,7 +10,7 @@ class App extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="App">
+      <div>
 
         {
           sessionStorage.getItem("token")

@@ -37,14 +37,14 @@ class Signin extends Component {
     return (
       <div className="signin-container">
 
-        <form className="form-container" onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
 
-          <div>
+          <div className="centrify-logo">
             <img src={logoTestio} alt="Testio logo" className="testio-logo" />
           </div>
 
           <div>
-            <span id="ico-user"></span>
+            <span id="ico-user" className="input-ico"></span>
             <input
               type="text"
               name="username"
@@ -56,7 +56,7 @@ class Signin extends Component {
           </div>
 
           <div>
-            <span id="ico-pass"></span>
+            <span id="ico-pass" className="input-ico"></span>
             <input
               type="password"
               name="password"

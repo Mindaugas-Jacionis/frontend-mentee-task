@@ -1,82 +1,90 @@
+//colors
+$white: #fff;
+$color_grey_bg: rgba(11, 15, 39, 0.8);
+$color_input_text: #424242;
+$color_input_text_focus: #999;
+$color_input_text_ph: #b3b3b3;
+$color_button: #9fd533;
+$color_button_hover: #86b300;
 
+//urls
+$url_background: url("../../assets/dude_in_wave.png");
+$url_user_ico: url("../../assets/ico-username.png");
+$url_pass_ico: url("../../assets/ico-lock.png");
 
-
-.signin-container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
+div.signin-container {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(
     to bottom,
-    rgba(11, 15, 39, 0.8),
-    rgba(11, 15, 39, 0.8)
-  ), url("../../assets/dude_in_wave.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: left center;
+    $color_grey_bg,
+    $color_grey_bg ), $url_background;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: left center;
+}
+
+.centrify-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .testio-logo {
-  width: 245px;
-  height: auto;
-  margin-bottom: 70px;
+	width: 245px;
+	height: auto;
+	margin-bottom: 70px;
 }
 
-.form-container {
-  color: white;
+.input-form, .login-btn {
+  border-radius: 8px;
+  border: none;
+	outline: none;
 }
 
 .input-form {
-  width: 300px;
-  height: 50px;
-  border-radius: 8px;
-  border: none;
-  margin-bottom: 15px;
-  padding-left: 50px;
-  padding-top: 5px;
-  color: #424242;
-  font-size: 14px;
+	width: 300px;
+	height: 50px;
+	margin-bottom: 15px;
+	padding-left: 50px;
+	padding-top: 5px;
+	color: $color_input_text;
+	font-size: 14px;
+	&:focus {
+		background-color: $color_input_text_focus;
+	}
 }
-
-.input-form:focus {
-  background-color: #999;
-  outline: none;
-}
-
 .input-form::placeholder {
-  color: #b3b3b3;
-}
-
-#ico-user {
-  position: absolute;
-  background: url("../../assets/ico-username.png") left top;
-  background-size: 14px;
-  width: 14px;
-  height: 16px;
-  margin: 21px 24px;
-}
-
-#ico-pass {
-  position: absolute;
-  background: url("../../assets/ico-lock.png") left top;
-  background-size: 14px;
-  width: 14px;
-  height: 16px;
-  margin: 21px 24px;
+	color: $color_input_text_ph;
 }
 
 .login-btn {
-  width: 350px;
-  height: 55px;
-  border-radius: 12px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  color: white;
-  background-color: #9fd533;
+	width: 350px;
+	height: 55px;
+	font-weight: bold;
+	color: $white;
+	background-color: $color_button;
+	&:hover {
+		background-color: $color_button_hover;
+	}
 }
 
-.login-btn:hover {
-  background-color: #86b300;
+#ico-user {
+	position: absolute;
+	background: $url_user_ico left top;
+	background-size: 14px;
+	width: 14px;
+	height: 16px;
+	margin: 21px 24px;
+}
+#ico-pass {
+	position: absolute;
+	background: $url_pass_ico left top;
+	background-size: 14px;
+	width: 14px;
+	height: 16px;
+	margin: 21px 24px;
 }

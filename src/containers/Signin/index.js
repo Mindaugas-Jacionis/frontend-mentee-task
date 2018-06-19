@@ -16,19 +16,15 @@ class Signin extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  handleSubmit(event) {
+  handleSubmit (event){
 
     event.preventDefault();
 
     this.setState({ isLoading: true })
 
     const { username, password } = this.state;
-    this.props.onLoginRequest(username, password).then(result => {
-
-      console.log("Success. Token: "+result.token);
-
-      this.props.history.push('/servers');
-
+    this.props.onLoginRequest(username, password, this.props.history).then(result => {
+        console.log("Success. Token: "+result.token);
     });
   }
 

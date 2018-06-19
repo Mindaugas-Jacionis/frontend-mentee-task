@@ -6,8 +6,8 @@ import Signin from '../../containers/Signin';
 const Main = (props) => {
   return (
     <Switch>
-      <Route exact path="/servers" component={Servers} />
       <Route exact path="/" component={Signin} />
+      <Route path="/servers" component={Servers} />
     </Switch>
 )}
 

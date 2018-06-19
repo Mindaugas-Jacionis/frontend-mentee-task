@@ -48,7 +48,7 @@ export function showError(error) {
 }
 
 
-export const authorization = (username, password) => (dispatch) =>
+export const authorization = (username, password, history) => (dispatch) =>
   new Promise ((resolve, reject) => {
     fetch('http://playground.tesonet.lt/v1/tokens', {
       method: 'POST',
@@ -61,6 +61,7 @@ export const authorization = (username, password) => (dispatch) =>
       })
     }).then( response => {
       if (response.ok) {
+          history.push("/servers");
           response.json().then( result => {
             console.log("API pasiektas. Token gautas.");
             dispatch(logUserIn(result.token));

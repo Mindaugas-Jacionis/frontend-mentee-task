@@ -17,22 +17,25 @@ class Servers extends Component {
   }
 
   componentWillMount() {
-    this.props.onAPIRequest();
+    if (this.props.isLogged)
+      this.props.onAPIRequest();
+    else {
+      this.props.history.replace("/");
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.isLogged){
-      console.log(newProps.isLogged);
-      this.props.history.push("/");
+    if (!newProps.isLogged)
+      this.props.history.replace("/");
+    else {
+      setTimeout(() => this.setState({
+          servers: newProps.servers
+        }, () => {
+          this.setState({
+            isFetching: false
+          })
+      }), 500);
     }
-
-    setTimeout(() => this.setState({
-      servers: newProps.servers
-    }, () => {
-      this.setState({
-        isFetching: false
-      })
-    }), 500);
   }
 
   render() {

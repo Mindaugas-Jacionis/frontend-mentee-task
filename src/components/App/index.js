@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Main from '../Main';
 import Header from '../Header';
-import { authorization, logUserOut, apiRequest } from '../../actions';
-import 'whatwg-fetch';
 
 class App extends Component {
 
@@ -31,10 +30,4 @@ const mapStateToProps = (state, props) => {
   })
 };
 
-const mapActionsToProps = {
-  onLogoutRequest: logUserOut,
-  onLoginRequest: authorization,
-  onAPIRequest: apiRequest
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(App);
+export default withRouter(connect(mapStateToProps, null)(App));

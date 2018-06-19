@@ -3,7 +3,7 @@ import { LOG_IN, LOG_OUT, GET_SERVERS, SHOW_ERROR } from '../actions';
 const initialState = {
     isLogged: false,
     servers: [],
-    error: null
+    error: null,
 };
 
 export default function mainReducer(state = initialState, { type, payload }) {

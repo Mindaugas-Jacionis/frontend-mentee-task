@@ -23,7 +23,8 @@ class Signin extends Component {
     this.setState({ isLoading: true })
 
     const { username, password } = this.state;
-    this.props.onLoginRequest(username, password, this.props.history).then(result => {
+    this.props.onLoginRequest(username, password).then(result => {
+        this.props.history.push("/servers");
         console.log("Success. Token: "+result.token);
     });
   }

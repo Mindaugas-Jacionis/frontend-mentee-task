@@ -16,11 +16,16 @@ class Servers extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.onAPIRequest();
   }
 
   componentWillReceiveProps(newProps) {
+    if (!newProps.isLogged){
+      console.log(newProps.isLogged);
+      this.props.history.push("/");
+    }
+
     setTimeout(() => this.setState({
       servers: newProps.servers
     }, () => {
@@ -31,27 +36,32 @@ class Servers extends Component {
   }
 
   render() {
+    console.log("Servers container has been rendered.");
+
     const { servers, isFetching } = this.state;
 
     return (
-      <div style={centrifyingDiv}>
-        {
-          isFetching && servers.length === 0
-          &&
-          <Spinner spinnerType="serverSpinner" />
-        }
-        {
-          !isFetching && servers.length > 0
-          &&
-          <ServerList servers={servers} />
-        }
+      <div>
+        <div style={centrifyingDiv}>
+          {
+            isFetching && servers.length === 0
+            &&
+            <Spinner spinnerType="serverSpinner" />
+          }
+          {
+            !isFetching && servers.length > 0
+            &&
+            <ServerList servers={servers} />
+          }
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-    servers: state.servers
+const mapStateToProps = state => ({
+    servers: state.servers,
+    isLogged: state.isLogged
 });
 
 const mapActionsToProps = {

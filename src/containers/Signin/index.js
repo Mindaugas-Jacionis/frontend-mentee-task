@@ -23,17 +23,17 @@ class Signin extends Component {
     this.setState({ isLoading: true })
 
     const { username, password } = this.state;
-    const { history } = this.props;
+    this.props.onLoginRequest(username, password).then(result => {
 
-    setTimeout(()=>this.props.onLoginRequest(username, password,() => {
-      this.setState({ isLoading: false });
-      history.push('/servers');
-    }), 500);
+      console.log("Success. Token: "+result.token);
 
+      this.props.history.push('/servers');
+
+    });
   }
 
   render() {
-
+    console.log("Rendering Login");
     return (
       <div className="signin-container">
 
@@ -78,8 +78,13 @@ class Signin extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isLogged: state.isLogged,
+  token: state.token
+})
+
 const mapActionsToProps = {
   onLoginRequest: authorization
 }
 
-export default connect(null, mapActionsToProps)(Signin);
+export default connect(mapStateToProps, mapActionsToProps)(Signin);

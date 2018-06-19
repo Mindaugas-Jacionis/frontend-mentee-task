@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logUserOut } from '../../actions';
+import { Redirect } from 'react-router-dom';
 import logoTestio from '../../assets/logotype-testio.png';
 import logoutIco from '../../assets/ico_logout.png';
 import './Header.scss';

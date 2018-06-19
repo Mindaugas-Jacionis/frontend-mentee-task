@@ -9,9 +9,9 @@ const initialState = {
 export default function mainReducer(state = initialState, { type, payload }) {
   switch (type) {
     case LOG_IN:
-          return {...state, isLogged: true};
+          return {...state, isLogged: true, token: payload.token};
     case LOG_OUT:
-          return {...state, isLogged: false};
+          return {...state, isLogged: false, servers: []};
     case GET_SERVERS:
           return {...state, servers: payload.servers};
     case SHOW_ERROR:

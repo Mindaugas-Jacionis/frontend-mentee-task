@@ -6,6 +6,9 @@ export const GET_SERVERS = 'users:getServers';
 export const SHOW_ERROR = 'users:showError';
 
 function logUserIn(token) {
+
+  sessionStorage.setItem("token", token);
+
   return {
     type: LOG_IN,
     payload: {
@@ -15,9 +18,9 @@ function logUserIn(token) {
 }
 
 export function logUserOut() {
-  console.log("Logout'as daromas: ",sessionStorage.getItem("token"));
+
   sessionStorage.removeItem("token");
-  console.log("Logout'as padarytas: ",sessionStorage.getItem("token"));
+
   return {
     type: LOG_OUT,
     payload: {
@@ -44,25 +47,9 @@ export function showError(error) {
   }
 }
 
-export function apiRequest() {
-  return dispatch => {
-    fetch('http://playground.tesonet.lt/v1/servers', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
-        }
-      }).then( response => response.json())
-      .then( result => {
-        console.log("API pasiektas. Serveriai gauti.");
-        dispatch(getServers(result));
-      })
-      .catch(error => dispatch(showError(error)));
-  }
-}
 
-export function authorization(username, password) {
-  return dispatch => {
+export const authorization = (username, password) => (dispatch) =>
+  new Promise ((resolve, reject) => {
     fetch('http://playground.tesonet.lt/v1/tokens', {
       method: 'POST',
       headers: {
@@ -72,21 +59,41 @@ export function authorization(username, password) {
         username: username,
         password: password,
       })
-    }).then(handleErrors)
-      .then( response => response.json())
-      .then( result => {
-        //this.setState({ token: result.token })
-        sessionStorage.setItem("token", result.token);
-        console.log("API pasiektas. Token gautas.");
-        dispatch(logUserIn(result.token));
-      })
-      .catch(error => dispatch(showError()));
-  }
-}
+    }).then( response => {
+      if (response.ok) {
+          response.json().then( result => {
+            console.log("API pasiektas. Token gautas.");
+            dispatch(logUserIn(result.token));
+            resolve(result);
+        })
+      } else {
+        let error = new Error(response.statusText)
+        error.response = response
+        dispatch(showError(error.response.statusText), () => {throw error})
+        reject(error);
+      }
+    });
+  });
 
-function handleErrors(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
+export function apiRequest() {
+  return dispatch => {
+    fetch('http://playground.tesonet.lt/v1/servers', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        }
+      }).then( response => {
+        if (response.ok) {
+            response.json().then( result => {
+              console.log("API pasiektas. Serveriai gauti.");
+              dispatch(getServers(result));
+          })
+        } else {
+          let error = new Error(response.statusText)
+          error.response = response
+          dispatch(showError(error.response.statusText), () => {throw error})
+        }
+      });
+  }
 }

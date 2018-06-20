@@ -34,6 +34,11 @@ class Signin extends Component {
 
   }
 
+  componentWillMount() {
+    if (!!sessionStorage.getItem("token"))
+      this.props.history.push("/servers");
+  }
+
   render() {
 
     return (

@@ -18,6 +18,12 @@ $centrify: (display: flex, justify-content: space-between, align-items: center);
   min-width: 60px;
   font-size: 13px;
   color: $color_logout;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: red;
+  }
 }
 
 .logo-style {

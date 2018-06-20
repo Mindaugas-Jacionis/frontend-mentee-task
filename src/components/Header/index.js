@@ -13,9 +13,9 @@ class Header extends Component {
 
         <div><img src={logoTestio} alt="Testio logo" className="logo-style" /></div>
 
-        <div className="logout-btn">
+        <div className="logout-btn" onClick={this.props.onLogoutRequest}>
           <img src={logoutIco} className="logout-ico-style" alt="Logout Icon" />
-          <div onClick={this.props.onLogoutRequest}>Logout</div>
+          <div>Logout</div>
         </div>
 
       </div>

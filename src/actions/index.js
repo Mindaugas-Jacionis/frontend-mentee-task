@@ -5,6 +5,14 @@ export const LOG_OUT = 'users:logUserOut';
 export const GET_SERVERS = 'users:getServers';
 export const SHOW_ERROR = 'users:showError';
 
+const getServers = (servers) => ({
+    type: GET_SERVERS,
+    payload: {
+      servers: servers
+    }
+  }
+)
+
 function logUserIn(token) {
 
   sessionStorage.setItem("token", token);
@@ -29,24 +37,20 @@ export function logUserOut() {
   }
 }
 
-function getServers(servers){
-  return {
-    type: GET_SERVERS,
-    payload: {
-      servers: servers
-    }
-  }
-}
+function showError(error, type) {
+  let errorMsg = error;
 
-export function showError(error) {
-  return {
+  if (error === 'Unauthorized')
+    if (type === 'signin') errorMsg = 'The user name or password is incorrect. Please try again.';
+    else if (type === 'servers') errorMsg = 'Something went wrong. Try logging out and back in.';
+
+  return ({
     type: SHOW_ERROR,
     payload: {
-      error: `Error: ${error}`
+      error: errorMsg
     }
-  }
+  });
 }
-
 
 export const authorization = (username, password) => (dispatch) =>
   new Promise ((resolve, reject) => {
@@ -62,21 +66,21 @@ export const authorization = (username, password) => (dispatch) =>
     }).then( response => {
       if (response.ok) {
           response.json().then( result => {
-            console.log("API pasiektas. Token gautas.");
             dispatch(logUserIn(result.token));
             resolve(result);
         })
       } else {
         let error = new Error(response.statusText)
         error.response = response
-        dispatch(showError(error.response.statusText), () => {throw error})
+        dispatch(showError(response.statusText, "signin"))
         reject(error);
       }
-    });
+    })
+    .catch( error => console.log(error));
   });
 
-export function apiRequest(history) {
-  return dispatch => {
+export const apiRequest = () => (dispatch) =>
+  new Promise ((resolve, reject) => {
     fetch('http://playground.tesonet.lt/v1/servers', {
       method: 'GET',
       headers: {
@@ -85,15 +89,16 @@ export function apiRequest(history) {
         }
       }).then( response => {
         if (response.ok) {
-            response.json().then( result => {
-              console.log("API pasiektas. Serveriai gauti.");
-              dispatch(getServers(result));
+            response.json().then( servers => {
+              dispatch(getServers(servers));
+              resolve();
           })
         } else {
           let error = new Error(response.statusText)
           error.response = response
-          dispatch(showError(error.response.statusText), () => {throw error})
+          dispatch(showError(response.statusText, "servers"))
+          reject(error);
         }
-      });
-  }
-}
+      })
+      .catch( error => console.log(error));
+  });

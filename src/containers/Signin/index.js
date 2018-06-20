@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authorization } from '../../actions';
+import ErrorMsg from '../../components/ErrorMsg';
 import Spinner from '../../components/Spinner';
 import logoTestio from '../../assets/logotype-testio-light.png';
 import './Signin.scss';
@@ -9,11 +10,12 @@ class Signin extends Component {
   state = {
     username: '',
     password: '',
-    isLoading: false
+    isLoading: false,
+    error: ''
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value, error: '' });
   }
 
   handleSubmit (event){
@@ -23,16 +25,22 @@ class Signin extends Component {
     this.setState({ isLoading: true })
 
     const { username, password } = this.state;
-    this.props.onLoginRequest(username, password).then(result => {
-        this.props.history.push("/servers");
-        console.log("Success. Token: "+result.token);
-    });
+
+    setTimeout(() =>
+      this.props.onLoginRequest(username, password)
+        .then(result => this.props.history.push("/servers"))
+        .catch(error => this.setState({ isLoading: false, error: this.props.error }))
+      ,300);
+
   }
 
   render() {
-    console.log("Rendering Login");
+
     return (
       <div className="signin-container">
+        {
+          this.state.error && <ErrorMsg error={this.state.error} />
+        }
 
         <form onSubmit={this.handleSubmit.bind(this)}>
 
@@ -77,7 +85,7 @@ class Signin extends Component {
 
 const mapStateToProps = state => ({
   isLogged: state.isLogged,
-  token: state.token
+  error: state.error
 })
 
 const mapActionsToProps = {

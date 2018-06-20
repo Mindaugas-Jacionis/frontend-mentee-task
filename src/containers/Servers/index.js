@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { apiRequest } from '../../actions';
+import ErrorMsg from '../../components/ErrorMsg';
 import ServerList from '../../components/ServerList';
 import Spinner from '../../components/Spinner';
 
@@ -12,39 +13,49 @@ class Servers extends Component {
     this.state = {
       token: '',
       servers: [],
-      isFetching: true
+      isFetching: true,
+      erro: ''
     }
+  }
+
+  loadServers() {
+    setTimeout(() => this.setState({servers: this.props.servers},
+                  () => this.setState({isFetching: false})
+              ), 500);
   }
 
   componentWillMount() {
-    if (this.props.isLogged)
-      this.props.onAPIRequest();
-    else {
-      this.props.history.replace("/");
-    }
+
+    if (sessionStorage.getItem("token"))
+          this.props.onAPIRequest()
+            .then(() => this.loadServers())
+            .catch(error => this.setState({ error: this.props.error }));
+
+    else  this.props.history.replace("/");
+
   }
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.isLogged)
-      this.props.history.replace("/");
-    else {
-      setTimeout(() => this.setState({
-          servers: newProps.servers
-        }, () => {
-          this.setState({
-            isFetching: false
-          })
-      }), 500);
+
+    if (!newProps.isLogged){
+          if (!sessionStorage.getItem("token"))
+              this.props.history.replace("/");
     }
+    else  this.loadServers();
+
   }
 
   render() {
-    console.log("Servers container has been rendered.");
 
     const { servers, isFetching } = this.state;
 
     return (
       <div>
+
+        {
+          this.state.error && <ErrorMsg error={this.state.error} />
+        }
+
         <div style={centrifyingDiv}>
           {
             isFetching && servers.length === 0
@@ -63,8 +74,9 @@ class Servers extends Component {
 }
 
 const mapStateToProps = state => ({
+    isLogged: state.isLogged,
     servers: state.servers,
-    isLogged: state.isLogged
+    error: state.error
 });
 
 const mapActionsToProps = {

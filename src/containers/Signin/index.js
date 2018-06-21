@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactSVG from 'react-svg';
 import { authorization } from '../../actions';
 import ErrorMsg from '../../components/ErrorMsg';
 import Spinner from '../../components/Spinner';
 import logoTestio from '../../assets/logotype-testio-light.png';
+import dudeInWave from '../../assets/dude_in_wave.png';
+import icoUser from '../../assets/ico-username.svg';
+import icoPass from '../../assets/ico-password.svg';
 import './Signin.scss';
 
 class Signin extends Component {
@@ -43,6 +47,8 @@ class Signin extends Component {
 
     return (
       <div className="signin-container">
+        <img className='bg' src={dudeInWave} alt="Dude in Wave" />
+
         {
           this.state.error && <ErrorMsg error={this.state.error} />
         }
@@ -54,7 +60,7 @@ class Signin extends Component {
           </div>
 
           <div>
-            <span id="ico-user" className="input-ico"></span>
+            <ReactSVG path={icoUser} svgClassName="input-ico" />
             <input
               type="text"
               name="username"
@@ -66,7 +72,7 @@ class Signin extends Component {
           </div>
 
           <div>
-            <span id="ico-pass" className="input-ico"></span>
+            <ReactSVG path={icoPass} svgClassName="input-ico"/>
             <input
               type="password"
               name="password"

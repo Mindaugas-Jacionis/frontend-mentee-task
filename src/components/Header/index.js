@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactSVG from 'react-svg';
 import { logUserOut } from '../../actions';
 import logoTestio from '../../assets/logotype-testio.png';
-import logoutIco from '../../assets/ico_logout.png';
+import icoLogout from '../../assets/ico-logout.svg';
 import './Header.scss';
 
 class Header extends Component {
@@ -11,11 +12,11 @@ class Header extends Component {
     return (
       <div className="header-style">
 
-        <div><img src={logoTestio} alt="Testio logo" className="logo-style" /></div>
+        <div><img src={logoTestio} alt="Testio logo" style={{ width: 110 }}/></div>
 
         <div className="logout-btn" onClick={this.props.onLogoutRequest}>
-          <img src={logoutIco} className="logout-ico-style" alt="Logout Icon" />
-          <div>Logout</div>
+          <ReactSVG path={icoLogout} />
+          Logout
         </div>
 
       </div>

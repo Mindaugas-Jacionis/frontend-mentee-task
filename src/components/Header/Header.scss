@@ -1,4 +1,5 @@
 $color_logout: #2f3254;
+$color_logout_hover: #99cc33;
 $centrify: (display: flex, justify-content: space-between, align-items: center);
 
 @mixin center_items($display, $justify-content, $align-items){
@@ -21,15 +22,7 @@ $centrify: (display: flex, justify-content: space-between, align-items: center);
   cursor: pointer;
 
   &:hover {
-    text-decoration: underline;
-    color: red;
+    color: $color_logout_hover;
+    fill: $color_logout_hover;
   }
-}
-
-.logo-style {
-  width: 110px;
-}
-
-.logout-ico-style {
-  height: 14px;
 }

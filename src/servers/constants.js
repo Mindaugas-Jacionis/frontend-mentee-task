@@ -1,1 +1,1 @@
-export const NAME = 'server';
+export const NAME = 'SERVER';

@@ -1,12 +1,16 @@
 import React from 'react';
-import loginSpinner from '../../../assets/login-spinner.gif';
 import serverSpinner from '../../../assets/earth-spinner.gif';
+import './Spinner.scss';
 
 const Spinner = (props) => (
   <div>
     {
       props.spinnerType === "loginSpinner"
-      ? <img src={ loginSpinner } alt="Login Spinner" style={{ width: 40 }} />
+      ? <div className="bubbles_container">
+          <div className="bubbles bubble_1"></div>
+          <div className="bubbles bubble_2"></div>
+          <div className="bubbles bubble_3"></div>
+        </div>
       : props.spinnerType === "serverSpinner"
       ? <img src={ serverSpinner } alt="Server Spinner" style={{ width: 500 }} />
       : "Spinner type not defined."

@@ -24,11 +24,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  console.log(state);
-  return ({
-    isLogged: state.AUTH.isLogged
-  })
-};
+const mapStateToProps = (state, props) => ({
+  isLogged: state.AUTH.isLogged
+})
+
 
 export default withRouter(connect(mapStateToProps, null)(App));

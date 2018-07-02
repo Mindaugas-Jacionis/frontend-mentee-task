@@ -14,7 +14,7 @@ class Signin extends Component {
   state = {
     username: '',
     password: '',
-    isLoading: false,
+    isLoading: true,
     error: ''
   }
 
@@ -34,10 +34,7 @@ class Signin extends Component {
     setTimeout(() =>
       this.props.onLoginRequest(username, password)
         .then(result => this.props.history.push("/servers"))
-        .catch(error => {
-          this.setState({ isLoading: false, error: this.props.error })
-          console.log(this.props.error);
-        })
+        .catch(error => this.setState({ isLoading: false, error: this.props.error }))
       ,300);
 
   }
@@ -104,8 +101,8 @@ class Signin extends Component {
 const mapStateToProps = state => {
   return ({
     //token: selectors.getToken(state),
-    isLogged: state.AUTH.isLogged,
-    error: state.AUTH.error
+    isLogged: auth.selectors.isLogged(state),
+    error: auth.selectors.getError(state)
   })
 }
 

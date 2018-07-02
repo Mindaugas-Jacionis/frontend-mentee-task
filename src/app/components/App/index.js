@@ -25,8 +25,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log(state);
   return ({
-    isLogged: state.isLogged
+    isLogged: state.AUTH.isLogged
   })
 };
 

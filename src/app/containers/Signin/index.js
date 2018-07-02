@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactSVG from 'react-svg';
-import { authorization } from '../../actions';
+import auth from '../../../auth';
 import ErrorMsg from '../../components/ErrorMsg';
 import Spinner from '../../components/Spinner';
-import logoTestio from '../../assets/logotype-testio-light.png';
-import dudeInWave from '../../assets/dude_in_wave.png';
-import icoUser from '../../assets/ico-username.svg';
-import icoPass from '../../assets/ico-password.svg';
+import logoTestio from '../../../assets/logotype-testio-light.png';
+import dudeInWave from '../../../assets/dude_in_wave.png';
+import icoUser from '../../../assets/ico-username.svg';
+import icoPass from '../../../assets/ico-password.svg';
 import './Signin.scss';
 
 class Signin extends Component {
@@ -18,29 +18,34 @@ class Signin extends Component {
     error: ''
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value, error: '' });
-  }
+  };
 
   handleSubmit (event){
+    const { username, password } = this.state;
 
     event.preventDefault();
 
     this.setState({ isLoading: true })
 
-    const { username, password } = this.state;
+
 
     setTimeout(() =>
       this.props.onLoginRequest(username, password)
         .then(result => this.props.history.push("/servers"))
-        .catch(error => this.setState({ isLoading: false, error: this.props.error }))
+        .catch(error => {
+          this.setState({ isLoading: false, error: this.props.error })
+          console.log(this.props.error);
+        })
       ,300);
 
   }
 
   componentWillMount() {
-    if (!!sessionStorage.getItem("token"))
+    if (!!sessionStorage.getItem("token")) {
       this.props.history.push("/servers");
+    }
   }
 
   render() {
@@ -67,7 +72,7 @@ class Signin extends Component {
               placeholder="Username"
               className="input-form"
               value={this.state.username}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
             />
           </div>
 
@@ -79,7 +84,7 @@ class Signin extends Component {
               placeholder="Password"
               className="input-form"
               value={this.state.password}
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
             />
           </div>
 
@@ -94,13 +99,18 @@ class Signin extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLogged: state.isLogged,
-  error: state.error
-})
+
+
+const mapStateToProps = state => {
+  return ({
+    //token: selectors.getToken(state),
+    isLogged: state.AUTH.isLogged,
+    error: state.AUTH.error
+  })
+}
 
 const mapActionsToProps = {
-  onLoginRequest: authorization
+  onLoginRequest: auth.actions.authorization
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Signin);

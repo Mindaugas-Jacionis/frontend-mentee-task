@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { apiRequest } from '../../actions';
+import servers from '../../../servers';
 import ErrorMsg from '../../components/ErrorMsg';
 import ServerList from '../../components/ServerList';
 import Spinner from '../../components/Spinner';
@@ -74,13 +74,13 @@ class Servers extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLogged: state.isLogged,
-    servers: state.servers,
-    error: state.error
+    isLogged: state.AUTH.isLogged,
+    servers: state.SERVER.servers,
+    error: state.SERVER.error
 });
 
 const mapActionsToProps = {
-  onAPIRequest: apiRequest
+  onAPIRequest: servers.actions.apiRequest
 }
 
 const centrifyingDiv = {

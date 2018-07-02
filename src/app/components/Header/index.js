@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactSVG from 'react-svg';
-import { logUserOut } from '../../actions';
-import logoTestio from '../../assets/logotype-testio.png';
-import icoLogout from '../../assets/ico-logout.svg';
+import auth from '../../../auth';
+import logoTestio from '../../../assets/logotype-testio.png';
+import icoLogout from '../../../assets/ico-logout.svg';
 import './Header.scss';
 
 class Header extends Component {
@@ -25,7 +25,7 @@ class Header extends Component {
 }
 
 const mapActionsToProps = {
-  onLogoutRequest: logUserOut
+  onLogoutRequest: auth.actions.logUserOut
 };
 
 export default connect(null, mapActionsToProps)(Header);

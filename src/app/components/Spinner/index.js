@@ -1,6 +1,6 @@
 import React from 'react';
-import loginSpinner from '../../assets/login-spinner.gif';
-import serverSpinner from '../../assets/earth-spinner.gif';
+import loginSpinner from '../../../assets/login-spinner.gif';
+import serverSpinner from '../../../assets/earth-spinner.gif';
 
 const Spinner = (props) => (
   <div>

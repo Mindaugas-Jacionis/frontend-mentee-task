@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import thunk from 'redux-thunk';
-import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import mainReducer from './reducers';
+import store from './app/state/index';
+import './index.scss';
+import App from './app/components/App';
 
 ReactDOM.render(
-  <Provider store={createStore(mainReducer, applyMiddleware(thunk))}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
@@ -18,4 +16,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// registerServiceWorker();

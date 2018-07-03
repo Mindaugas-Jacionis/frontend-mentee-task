@@ -27,11 +27,11 @@ class Servers extends Component {
 
   componentWillMount() {
 
-    if (sessionStorage.getItem("token"))
-          this.props.onAPIRequest()
-            .then(() => this.loadServers())
-            .catch(error => this.setState({ error: this.props.error }));
-
+    if (sessionStorage.getItem("token")) {
+        this.props.onAPIRequest()
+          .then(() => this.loadServers())
+          .catch(error => this.setState({ error: this.props.error }));
+    }
     else  this.props.history.replace("/");
 
   }

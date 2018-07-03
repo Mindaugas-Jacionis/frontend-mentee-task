@@ -1,15 +1,14 @@
 import React from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Servers from '../../containers/Servers';
 import Signin from '../../containers/Signin';
 
-const Main = (props) => {
-  return (
+const Router = (props) => (
     <Switch>
       <Route exact path="/" component={Signin} />
       <Route path="/servers" component={Servers} />
-      <Route path="*" render={() => (<Redirect to="/" />)} /> 
+      <Route path="*" render={() => (<Redirect to="/" />)} />
     </Switch>
-)}
+);
 
-export default withRouter(Main);
+export default Router;

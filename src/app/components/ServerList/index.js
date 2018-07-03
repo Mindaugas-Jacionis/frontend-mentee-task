@@ -1,17 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ServerListItem from '../ServerListItem';
 import './ServerList.scss';
-
-const ServerListItem = ({ server }) => (
-  <li>
-    <Link to='/'>
-    <div className="server-box">
-      <div>{server.name}</div>
-      <div> {server.distance} km</div>
-    </div>
-    </Link>
-  </li>
-)
 
 const ServerList = (props) => (
 

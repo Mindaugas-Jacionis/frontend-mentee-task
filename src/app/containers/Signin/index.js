@@ -14,7 +14,7 @@ class Signin extends Component {
   state = {
     username: '',
     password: '',
-    isLoading: true,
+    isLoading: false,
     error: ''
   }
 
@@ -22,14 +22,12 @@ class Signin extends Component {
     this.setState({ [event.target.name]: event.target.value, error: '' });
   };
 
-  handleSubmit (event){
+  handleSubmit = (event) =>{
     const { username, password } = this.state;
 
     event.preventDefault();
 
-    this.setState({ isLoading: true })
-
-
+    this.setState({ isLoading: true });
 
     setTimeout(() =>
       this.props.onLoginRequest(username, password)
@@ -55,7 +53,7 @@ class Signin extends Component {
           this.state.error && <ErrorMsg error={this.state.error} />
         }
 
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
 
           <div className="centrify-logo">
             <img src={logoTestio} alt="Testio logo" className="testio-logo" />

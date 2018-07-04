@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Servers from '../../containers/Servers';
 import Signin from '../../containers/Signin';
 
-const Router = (props) => (
+const MainRouter = (props) => (
     <Switch>
       <Route exact path="/" component={Signin} />
       <Route path="/servers" component={Servers} />
@@ -11,4 +11,4 @@ const Router = (props) => (
     </Switch>
 );
 
-export default Router;
+export default MainRouter;

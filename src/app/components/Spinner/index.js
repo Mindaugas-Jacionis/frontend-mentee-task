@@ -1,5 +1,5 @@
 import React from 'react';
-import serverSpinner from '../../../assets/earth-spinner.gif';
+import { serverSpinner } from '../../../assets';
 import './Spinner.scss';
 
 const Spinner = (props) => (

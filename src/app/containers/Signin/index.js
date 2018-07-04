@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactSVG from 'react-svg';
 import auth from '../../../auth';
-import ErrorMsg from '../../components/ErrorMsg';
-import Spinner from '../../components/Spinner';
-import logoTestio from '../../../assets/logotype-testio-light.png';
-import dudeInWave from '../../../assets/dude_in_wave.png';
-import icoUser from '../../../assets/ico-username.svg';
-import icoPass from '../../../assets/ico-password.svg';
+import { ErrorMsg, Spinner, SvgIcon } from '../../components';
+import { logoTestio, dudeInWave } from '../../../assets';
 import './Signin.scss';
 
-class Signin extends Component {
+export class Signin extends Component {
   state = {
     username: '',
     password: '',
@@ -53,16 +48,17 @@ class Signin extends Component {
           this.state.error && <ErrorMsg error={this.state.error} />
         }
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="loginForm">
 
           <div className="centrify-logo">
             <img src={logoTestio} alt="Testio logo" className="testio-logo" />
           </div>
 
           <div>
-            <ReactSVG path={icoUser} svgClassName="input-ico" />
+            <SvgIcon iconType="userIcon" className="input-ico" />
             <input
               type="text"
+              id="username"
               name="username"
               placeholder="Username"
               className="input-form"
@@ -72,9 +68,10 @@ class Signin extends Component {
           </div>
 
           <div>
-            <ReactSVG path={icoPass} svgClassName="input-ico"/>
+            <SvgIcon iconType="passIcon" className="input-ico" />
             <input
               type="password"
+              id="password"
               name="password"
               placeholder="Password"
               className="input-form"
@@ -96,13 +93,11 @@ class Signin extends Component {
 
 
 
-const mapStateToProps = state => {
-  return ({
-    //token: selectors.getToken(state),
-    isLogged: auth.selectors.isLogged(state),
-    error: auth.selectors.getError(state)
-  })
-}
+const mapStateToProps = state => ({
+  isLogged: auth.selectors.isLogged(state),
+  error: auth.selectors.getError(state)
+})
+
 
 const mapActionsToProps = {
   onLoginRequest: auth.actions.authorization

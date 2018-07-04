@@ -1,5 +1,5 @@
 import React from 'react';
-import ServerListItem from '../ServerListItem';
+import { ServerListItem } from '../';
 import './ServerList.scss';
 
 const ServerList = (props) => (

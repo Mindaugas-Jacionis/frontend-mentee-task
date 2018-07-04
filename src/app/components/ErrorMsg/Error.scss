@@ -25,13 +25,13 @@ $error_color_text: #f9f9f9;
   color: $error_color_text;
   background: $error_color;
 
-  -webkit-animation: fade-in 0.3s ease-in-out forwards;
-	-moz-animation: fade-in 0.3s ease-in-out forwards;
-	-o-animation: fade-in 0.3s ease-in-out forwards;
-	animation: fade-in .3s ease-in-out forwards;
+  -webkit-animation: show-in .3s ease-in forwards;
+	-moz-animation: show-in .3s ease-in forwards;
+	-o-animation: show-in .3s ease-in forwards;
+	animation: show-in .3s ease-in forwards;
 }
 
-@keyframes fade-in {
+@keyframes show-in {
   0% {top: -30px; opacity: 0.1;}
   15% {top: -20px; opacity: 0.2;}
   30% {top: -10px; opacity: 0.4;}
@@ -39,7 +39,7 @@ $error_color_text: #f9f9f9;
 	100% { top: 0px; opacity: 1;}
 }
 
-@-webkit-keyframes fade-in {
+@-webkit-keyframes show-in {
   0% {top: -30px; opacity: 0.1;}
   15% {top: -20px; opacity: 0.2;}
   30% {top: -10px; opacity: 0.4;}
@@ -47,7 +47,7 @@ $error_color_text: #f9f9f9;
 	100% { top: 0px; opacity: 1;}
 }
 
-@-moz-keyframes fade-in {
+@-moz-keyframes show-in {
   0% {top: -30px; opacity: 0.1;}
   15% {top: -20px; opacity: 0.2;}
   30% {top: -10px; opacity: 0.4;}
@@ -55,7 +55,7 @@ $error_color_text: #f9f9f9;
 	100% { top: 0px; opacity: 1;}
 }
 
-@-o-keyframes fade-in {
+@-o-keyframes show-in {
   0% {top: -30px; opacity: 0.1;}
   15% {top: -20px; opacity: 0.2;}
   30% {top: -10px; opacity: 0.4;}

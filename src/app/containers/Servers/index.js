@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import auth from '../../../auth';
 import server from '../../../servers';
-import ErrorMsg from '../../components/ErrorMsg';
-import ServerList from '../../components/ServerList';
-import Spinner from '../../components/Spinner';
+import { ErrorMsg, Spinner, ServerList } from '../../components';
 
-class Servers extends Component {
+export class Servers extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      token: '',
       servers: [],
       isFetching: true,
-      erro: ''
+      error: ''
     }
   }
 

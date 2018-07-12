@@ -6,7 +6,7 @@ import { Signin } from './';
 
 configure({ adapter: new Adapter() });
 
-const wrapper = shallow(<Signin />);
+const wrapper = shallow(<Signin onLoginRequest={jest.fn(() => Promise.resolve())} />);
 
 describe('<Signin /> container', () => {
 
@@ -25,7 +25,7 @@ describe('<Signin /> container', () => {
         {name: 'username', value: 'test@gmail.com'}
       }
     )
-    // fill in password field with cats
+
     wrapper.find('#password').simulate(
       'change',
       {target:
@@ -44,10 +44,6 @@ describe('<Signin /> container', () => {
 
     it('should change the password state', () => {
        expect(wrapper.state().password).toEqual('cats');
-    })
-
-    it('should change the isLoading state', () => {
-       expect(wrapper.state().isLoading).toEqual(true);
     })
 
   })

@@ -8,9 +8,7 @@ import { Servers } from './';
 configure({ adapter: new Adapter() });
 
 describe('<Servers /> container', () => {
-
-  const wrapper = shallow(<Servers history="randomProp"/>);
-
+  
   const centrifyingDiv = {
     display: "flex",
     justifyContent: "center",
@@ -18,6 +16,8 @@ describe('<Servers /> container', () => {
   };
 
   it('Should have <Spinner /> component when fetching', () => {
+    let wrapper = shallow(<Servers history="randomProp" servers={[]} isFetching={true} />);
+
     expect(wrapper.contains(
       <div style={centrifyingDiv}>
         <Spinner spinnerType="serverSpinner" />
@@ -25,7 +25,8 @@ describe('<Servers /> container', () => {
   })
 
   it('Should have server <ServerList /> component after fetch', () => {
-    wrapper.setState({ isFetching: false, servers: ['a','b'] });
+    let wrapper = shallow(<Servers history="randomProp" servers={['a','b']} isFetching={false} />);
+
     expect(wrapper.contains(
       <div style={centrifyingDiv}>
         <ServerList servers={['a','b']} />

@@ -9,7 +9,6 @@ export class Signin extends Component {
   state = {
     username: '',
     password: '',
-    isLoading: false,
     error: ''
   }
 
@@ -22,14 +21,9 @@ export class Signin extends Component {
 
     event.preventDefault();
 
-    this.setState({ isLoading: true });
-
-    setTimeout(() =>
-      this.props.onLoginRequest(username, password)
-        .then(result => this.props.history.push("/servers"))
-        .catch(error => this.setState({ isLoading: false, error: this.props.error }))
-      ,300);
-
+    this.props.onLoginRequest(username, password)
+      .then(result => this.props.history.push("/servers"))
+      .catch(error => this.setState({ error: this.props.error }));
   }
 
   componentWillMount() {
@@ -81,7 +75,7 @@ export class Signin extends Component {
           </div>
 
           <button type="submit" className="login-btn">
-            { this.state.isLoading ? <Spinner spinnerType="loginSpinner" /> : "Log In" }
+            { this.props.isFetching ? <Spinner spinnerType="loginSpinner" /> : "Log In" }
           </button>
 
         </form>
@@ -95,6 +89,7 @@ export class Signin extends Component {
 
 const mapStateToProps = state => ({
   isLogged: auth.selectors.isLogged(state),
+  isFetching: auth.selectors.isFetching(state),
   error: auth.selectors.getError(state)
 })
 

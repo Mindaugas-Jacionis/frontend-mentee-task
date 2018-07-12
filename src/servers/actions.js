@@ -2,32 +2,37 @@ import 'whatwg-fetch';
 
 import * as types from './actionTypes';
 
-const getServers = (servers) => ({
-    //types: [GET_SERVERS, GET_SERVERS_SUCCESS, GET_SERVERS_FAILURE],
-    type: types.GET_SERVERS,
+export const getServersRequest = (servers) => ({
+    type: types.GET_SERVERS_REQUEST,
+  }
+)
+
+export const getServersSuccess = (servers) => ({
+    type: types.GET_SERVERS_SUCCESS,
     payload: {
       servers: servers
     }
   }
 )
 
-function showError(error, type) {
+export function getServersFailure(error) {
   let errorMsg = error;
 
   if (error === 'Unauthorized')
-    if (type === 'signin') errorMsg = 'The user name or password is incorrect. Please try again.';
-    else if (type === 'servers') errorMsg = 'Something went wrong. Try logging out and back in.';
+    errorMsg = 'Something went wrong. Try logging out and back in.';
 
   return ({
-    type: types.SHOW_ERROR,
+    type: types.GET_SERVERS_FAILURE,
     payload: {
       error: errorMsg
     }
   });
 }
 
-export const apiRequest = () => (dispatch) =>
+export const getServers = () => (dispatch) =>
   new Promise ((resolve, reject) => {
+    dispatch(getServersRequest());
+
     fetch('http://playground.tesonet.lt/v1/servers', {
       method: 'GET',
       headers: {
@@ -37,14 +42,18 @@ export const apiRequest = () => (dispatch) =>
       }).then( response => {
         if (response.ok) {
             response.json().then( servers => {
-              dispatch(getServers(servers));
-              resolve();
+              setTimeout(() => {
+                dispatch(getServersSuccess(servers));
+                resolve();
+              }, 500);
           })
         } else {
           let error = new Error(response.statusText)
           error.response = response
-          dispatch(showError(response.statusText, "servers"))
-          reject(error);
+          setTimeout(() => {
+            dispatch(getServersFailure(response.statusText, "servers"))
+            reject(error);
+          }, 500);
         }
       })
       .catch( error => console.log(error));

@@ -6,52 +6,30 @@ import { ErrorMsg, Spinner, ServerList } from '../../components';
 
 export class Servers extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      servers: [],
-      isFetching: true,
-      error: ''
-    }
-  }
-
-  loadServers() {
-    setTimeout(() => this.setState({servers: this.props.servers},
-                  () => this.setState({isFetching: false})
-              ), 500);
-  }
-
   componentWillMount() {
-
     if (sessionStorage.getItem("token")) {
         this.props.onAPIRequest()
-          .then(() => this.loadServers())
+          .then(() => {})
           .catch(error => this.setState({ error: this.props.error }));
     }
     else  this.props.history.replace("/");
-
   }
 
   componentWillReceiveProps(newProps) {
-
     if (!newProps.isLogged){
           if (!sessionStorage.getItem("token"))
               this.props.history.replace("/");
     }
-    else  this.loadServers();
-
   }
 
   render() {
-
-    const { servers, isFetching } = this.state;
+    const { servers, isFetching, error } = this.props;
 
     return (
       <div>
 
         {
-          this.state.error && <ErrorMsg error={this.state.error} />
+          error && <ErrorMsg error={error} />
         }
 
         <div style={centrifyingDiv}>
@@ -73,12 +51,13 @@ export class Servers extends Component {
 
 const mapStateToProps = state => ({
     isLogged: auth.selectors.isLogged(state),
+    isFetching: server.selectors.isFetching(state),
     servers: server.selectors.getServers(state),
     error: server.selectors.getError(state)
 });
 
 const mapActionsToProps = {
-  onAPIRequest: server.actions.apiRequest
+  onAPIRequest: server.actions.getServers
 }
 
 const centrifyingDiv = {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import auth from '../../../auth';
-import server from '../../../servers';
+import servers from '../../../servers';
 import { ErrorMsg, Spinner, ServerList } from '../../components';
 
-export class Servers extends Component {
+export class ServerPage extends Component {
 
   componentWillMount() {
     if (sessionStorage.getItem("token")) {
@@ -51,13 +51,13 @@ export class Servers extends Component {
 
 const mapStateToProps = state => ({
     isLogged: auth.selectors.isLogged(state),
-    isFetching: server.selectors.isFetching(state),
-    servers: server.selectors.getServers(state),
-    error: server.selectors.getError(state)
+    isFetching: servers.selectors.isFetching(state),
+    servers: servers.selectors.getServers(state),
+    error: servers.selectors.getError(state)
 });
 
 const mapActionsToProps = {
-  onAPIRequest: server.actions.getServers
+  onAPIRequest: servers.actions.getServers
 }
 
 const centrifyingDiv = {
@@ -66,4 +66,4 @@ const centrifyingDiv = {
   alignItems: "center"
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Servers);
+export default connect(mapStateToProps, mapActionsToProps)(ServerPage);

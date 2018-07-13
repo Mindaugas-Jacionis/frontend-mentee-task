@@ -2,6 +2,10 @@ import 'whatwg-fetch';
 
 import * as types from './actionTypes';
 
+export const clearServers = () => ({
+  type: types.CLEAR_SERVERS
+})
+
 export const getServersRequest = (servers) => ({
     type: types.GET_SERVERS_REQUEST,
   }

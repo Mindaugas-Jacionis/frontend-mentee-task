@@ -2,13 +2,13 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
 import logoTestio from '../../../assets/logotype-testio-light.png';
-import { Signin } from './';
+import { SigninPage } from './';
 
 configure({ adapter: new Adapter() });
 
-const wrapper = shallow(<Signin onLoginRequest={jest.fn(() => Promise.resolve())} />);
+const wrapper = shallow(<SigninPage onLoginRequest={jest.fn(() => Promise.resolve())} />);
 
-describe('<Signin /> container', () => {
+describe('<SigninPage /> container', () => {
 
   it('Should have logo', () => {
     expect(wrapper.contains(

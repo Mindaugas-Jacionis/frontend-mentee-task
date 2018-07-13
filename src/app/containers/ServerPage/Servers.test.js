@@ -3,12 +3,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow} from 'enzyme';
 import Spinner from '../../components/Spinner';
 import ServerList from '../../components/ServerList';
-import { Servers } from './';
+import { ServerPage } from './';
 
 configure({ adapter: new Adapter() });
 
-describe('<Servers /> container', () => {
-  
+describe('<ServerPage /> container', () => {
+
   const centrifyingDiv = {
     display: "flex",
     justifyContent: "center",
@@ -16,7 +16,7 @@ describe('<Servers /> container', () => {
   };
 
   it('Should have <Spinner /> component when fetching', () => {
-    let wrapper = shallow(<Servers history="randomProp" servers={[]} isFetching={true} />);
+    let wrapper = shallow(<ServerPage history="randomProp" servers={[]} isFetching={true} />);
 
     expect(wrapper.contains(
       <div style={centrifyingDiv}>
@@ -25,7 +25,7 @@ describe('<Servers /> container', () => {
   })
 
   it('Should have server <ServerList /> component after fetch', () => {
-    let wrapper = shallow(<Servers history="randomProp" servers={['a','b']} isFetching={false} />);
+    let wrapper = shallow(<ServerPage history="randomProp" servers={['a','b']} isFetching={false} />);
 
     expect(wrapper.contains(
       <div style={centrifyingDiv}>

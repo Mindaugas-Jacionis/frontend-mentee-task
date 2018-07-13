@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-seamless-immutable';
 import authReducer from '../../auth/reducer';
 import serverReducer from '../../servers/reducer';
 

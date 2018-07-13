@@ -5,7 +5,7 @@ import { ErrorMsg, Spinner, SvgIcon } from '../../components';
 import { logoTestio, dudeInWave } from '../../../assets';
 import './Signin.scss';
 
-export class Signin extends Component {
+export class SigninPage extends Component {
   state = {
     username: '',
     password: '',
@@ -98,4 +98,4 @@ const mapActionsToProps = {
   onLoginRequest: auth.actions.authorization
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(Signin);
+export default connect(mapStateToProps, mapActionsToProps)(SigninPage);

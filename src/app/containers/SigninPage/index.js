@@ -58,6 +58,7 @@ export class SigninPage extends Component {
               className="input-form"
               value={this.state.username}
               onChange={this.handleChange}
+              tabindex="1"
             />
           </div>
 
@@ -71,10 +72,11 @@ export class SigninPage extends Component {
               className="input-form"
               value={this.state.password}
               onChange={this.handleChange}
+              tabindex="2"
             />
           </div>
 
-          <button type="submit" className="login-btn">
+          <button type="submit" className="login-btn" tabindex="3">
             { this.props.isFetching ? <Spinner spinnerType="loginSpinner" /> : "Log In" }
           </button>
 

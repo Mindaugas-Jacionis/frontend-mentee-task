@@ -66,7 +66,7 @@ export const authorization = (username, password) => (dispatch) =>
   });
 
 export function logUserOut() {
-  sessionStorage.removeItem("token");
+  sessionStorage.clear();
 
   return {
     type: types.LOG_OUT,

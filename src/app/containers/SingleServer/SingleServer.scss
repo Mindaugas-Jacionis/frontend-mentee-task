@@ -1,0 +1,31 @@
+$color_link: black;
+$color_backBtn_hover: #99cc33;
+
+.serverInfo-container {
+  margin-top: 5em;
+  text-align: center;
+  align-items: center;
+}
+
+.ico-back {
+  margin-bottom: -20px;
+  margin-right: 50px;
+  width: 22px;
+  height: 18px;
+}
+
+.backText {
+  margin-left: 15px;
+  text-align: center;
+}
+
+.back-link {
+  color: $color_link;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    fill: $color_backBtn_hover;
+    color: $color_backBtn_hover;
+  }
+}

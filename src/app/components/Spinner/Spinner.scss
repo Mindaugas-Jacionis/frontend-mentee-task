@@ -1,3 +1,28 @@
+$color_bubbles_background: white;
+
+@mixin bubbleAnimation($time) {
+    -webkit-animation: pulse $time infinite;
+    -moz-animation: pulse $time infinite;
+    -ms-animation: pulse $time infinite;
+    -o-animation: pulse $time infinite;
+    animation: pulse $time infinite;
+}
+
+@mixin bubbleAnimationDelay($time) {
+  -webkit-animation-delay: $time;
+  -moz-animation-delay: $time;
+  -ms-animation-delay: $time;
+  -o-animation-delay: $time;
+  animation-delay: $time;
+}
+
+@mixin transformations() {
+  0% {transform: scale(0); opacity: 1;}
+  35% {transform: scale(1);}
+  70% {transform: scale(0);opacity: 1;}
+  100% {transform: scale(0);opacity: 1;}
+}
+
 .bubbles_container {
   margin: auto;
   width: 250px;
@@ -11,68 +36,41 @@
   margin: 18px 6px;
 
   border-radius: 100%;
-  background-color: white;
+  background-color: $color_bubbles_background;
   opacity: 0;
 }
 
 .bubble_1 {
-  -webkit-animation: fade-in .9s infinite;
-  -moz-animation: fade-in .9s infinite;
-  -o-animation: fade-in .9s infinite;
-  animation: fade-in .9s infinite;
+   @include bubbleAnimation(.9s);
 }
 
 .bubble_2 {
-
-  -webkit-animation: fade-in .9s infinite;
-  -moz-animation: fade-in .9s infinite;
-  -o-animation: fade-in .9s infinite;
-  animation: fade-in .9s infinite;
-
-  -webkit-animation-delay: .15s;
-  -moz-animation-delay: .15s;
-  -ms-animation-delay: .15s;
-  -o-animation-delay: .15s;
-  animation-delay: .15s;
+  @include bubbleAnimation(.9s);
+  @include bubbleAnimationDelay(.15s);
 }
 
 .bubble_3 {
-  -webkit-animation: fade-in .9s infinite;
-  -moz-animation: fade-in .9s infinite;
-  -o-animation: fade-in .9s infinite;
-  animation: fade-in .9s infinite;
-
-  -webkit-animation-delay: .3s;
-  -moz-animation-delay: .3s;
-  -ms-animation-delay: .3s;
-  -o-animation-delay: .3s;
-  animation-delay: .3s;
+  @include bubbleAnimation(.9s);
+  @include bubbleAnimationDelay(.3s);
 }
 
-@keyframes fade-in {
-  0% {transform: scale(0); opacity: 1;}
-  35% {transform: scale(1);}
-  70% {transform: scale(0);opacity: 1;}
-  100% {transform: scale(0);opacity: 1;}
+
+@keyframes pulse {
+  @include transformations();
 }
 
-@-webkit-keyframes fade-in {
-  0% {transform: scale(0); opacity: 1;}
-  35% {transform: scale(1);}
-  70% {transform: scale(0);opacity: 1;}
-  100% {transform: scale(0);opacity: 1;}
+@-webkit-keyframes pulse {
+  @include transformations();
 }
 
-@-moz-keyframes fade-in {
-  0% {transform: scale(0); opacity: 1;}
-  35% {transform: scale(1);}
-  70% {transform: scale(0);opacity: 1;}
-  100% {transform: scale(0);opacity: 1;}
+@-moz-keyframes pulse {
+  @include transformations();
 }
 
-@-o-keyframes fade-in {
-  0% {transform: scale(0); opacity: 1;}
-  35% {transform: scale(1);}
-  70% {transform: scale(0);opacity: 1;}
-  100% {transform: scale(0);opacity: 1;}
+@-ms-keyframes pulse {
+  @include transformations();
+}
+
+@-o-keyframes pulse {
+  @include transformations();
 }

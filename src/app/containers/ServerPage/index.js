@@ -34,9 +34,14 @@ export class ServerPage extends Component {
 
         <div style={centrifyingDiv}>
           {
-            isFetching && servers.length === 0
+            isFetching
             &&
             <Spinner spinnerType="serverSpinner" />
+          }
+          {
+            !isFetching && servers.length === 0
+            &&
+            <h2>There was an issue when loading the servers. Please try logging out and back in.</h2>
           }
           {
             !isFetching && servers.length > 0

@@ -1,12 +1,14 @@
 import { applyMiddleware } from 'redux';
-import { stateTransformer } from 'redux-seamless-immutable';
-import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-const logger = createLogger({
-  stateTransformer: stateTransformer
-});
+// import { stateTransformer } from 'redux-seamless-immutable';
+// import { createLogger } from 'redux-logger';
+// const logger = createLogger({
+//   stateTransformer: stateTransformer
+// });
+// //
+// const midlewares = [thunk, logger];
 
-const midlewares = [thunk, logger];
+const midlewares = [thunk];
 
 export default applyMiddleware(...midlewares);
